@@ -12,8 +12,10 @@
 
 ### 常见问题
 
-1. ssh虽然生成了，但是还是验证失败。
-	Agent admitted failure to sign using the key.
-	Permission denied (publickey).
-解决办法：
-	ssh-add ~/.ssh/id_rsa
+* ssh虽然生成了，但是还是验证失败。  
+
+    > Agent admitted failure to sign using the key.  
+    > Permission denied (publickey).  
+
+    解决办法：  
+    > sh-add ~/.ssh/id_rsa
