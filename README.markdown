@@ -1,9 +1,10 @@
-## My Blog
+### My Blog
 
 1. technology
 2. Rails
 3. Javascript
 
-## 注意事项
-1. 在一个新的环境下，想要构筑自己的博客开发环境的话，那么clone了自己的github工程后，需要运行以下命令  
-    `rake setup_github_pages`
+### 在一个新环境下构筑自己的博客环境步骤
+1. 在github上 `clone` 自己的博客库。
+2. 由于默认clone的是master分支，所以需要作成source分支 `git checkout -b source origin/source`
+3. 由于是初次构筑环境，那么需要运行 `rake setup_github_pages` 来初始化博客环境。
