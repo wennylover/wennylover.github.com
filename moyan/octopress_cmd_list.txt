@@ -1,0 +1,7 @@
+rake clean
+rake generate
+rake deploy
+
+rake preview
+
+rake new_post['my post title']
