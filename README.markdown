@@ -26,7 +26,7 @@
     > sh-add ~/.ssh/id_rsa
 
 * 如何在同一台机器配置多个github帐号  
-    1. `ssh-keygen -t rsa -C 'email@github.com'`  
+    1. `ssh-keygen -t rsa -C 'personal_email@github.com'`  
 
         > 在选择存储路径的时候，选择其他名字，比如 `/root/.ssh/id_rsa_other`
 <br>
@@ -38,4 +38,4 @@
         > User git  
         > IdentityFile ~/.ssh/id_rsa_wennylover
 <br>
-    4. 修改origin url `git origin set-url origin git@github-wennylover.com......`  
+    4. 修改origin url `git remote set-url origin git@github-wennylover.com......`  
