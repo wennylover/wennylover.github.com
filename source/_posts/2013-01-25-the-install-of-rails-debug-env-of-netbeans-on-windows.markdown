@@ -19,14 +19,16 @@ categories: [rails, env install]
 * 日本語構築手順  
 	http://www.terut.net/?p=314
 * windowsでDebug環境の構築（失敗っちゃた）
+
 ■gemfiles に「gem 'ruby-debug19'」を追加  
 ■bundle install を実行する  
-■libv8 -v '3.3.10.4'　がインストールされてないです。
+■libv8 -v '3.3.10.4'　がインストールされてないです。  
 	原因：Checking for Python...Unable to build libv8: Python not found!
 	Pythonの環境がないです。
 
 	ご参照
 	http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-while-installing-libv8
-■ActivePythonをインストールする
-■再Bundle install して、下記のエラーができ来ました。
+
+■ActivePythonをインストールする  
+■再Bundle install して、下記のエラーができ来ました。  
 	Installing therubyracer (0.9.10) with native extensions
