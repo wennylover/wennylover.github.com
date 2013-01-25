@@ -2,4 +2,6 @@ Here is My Tag List
 
 linux
 ubuntu
-moyan参考手册
+moyan manual:参考手册，常用的经常用来参考的博客文章
+rails
+env install:安装各种环境的文章
