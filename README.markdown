@@ -11,7 +11,8 @@
 1. 在github上 `clone` 自己的博客库。
 2. 由于默认clone的是master分支，所以需要作成source分支 `git checkout -b source origin/source`
 3. 如果已经配置了github帐号，那么按照下面的手顺，再配置多个帐号。
-4. 由于是初次构筑环境，那么需要运行 `rake setup_github_pages` 来初始化博客环境。
+4. 由于初次构筑环境，要在source分支下面运行 `bundle install` 命令，来安装必要的Gem包。
+5. 由于是初次构筑环境，那么需要运行 `rake setup_github_pages` 来初始化博客环境。
 运行时注意url的配置，如果是多个github帐号的话，注意host的配置。
 
 ### 常见问题
@@ -39,3 +40,7 @@
         > IdentityFile ~/.ssh/id_rsa_wennylover
 <br>
     4. 修改origin url `git remote set-url origin git@github-wennylover.com......`  
+
+* 在windows平台上执行 `rake setup_github_pages` 命令时碰到 `invalid byte sequence in Windows-31J` 错误。
+    > set LANG=ja_JP.UTF-8  
+    > export LANG=ja_JP.UTF-8(windows下的git bash下)  
