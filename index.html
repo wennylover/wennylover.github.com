@@ -9,9 +9,9 @@
   <meta name="author" content="默言">
 
   
-  <meta name="description" content="前言 这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。并且在windows这次没有成功。
-特别注意: 这里不是手顺。 正文内容 日本語構築手順 http://www.terut.net/?p=314 &hellip;">
+  <meta name="description" content="
+tracert www.github.com
+可以查看到连接到host的路由经过，可以借此查看自己的外网IP。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,176 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/25/usual-command-on-windows/">Linux常用命令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T16:50:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>tracert www.github.com<br/>
+可以查看到连接到host的路由经过，可以借此查看自己的外网IP。</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/25/software-list/">常用软件列表</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T16:44:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Windows系</h3>
+
+<hr />
+
+<h3>Linux系</h3>
+
+<hr />
+
+<ul>
+<li>rabbitvcs<br/>
+  linux下的SVN client，类似windows下的TortoiseSVN。</li>
+<li>nautinus<br/>
+  Linux下的资源管理器（resource manager）。</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">在局域网（LAN）中访问webrick服务器速度过慢</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T16:09:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>问题现象描述</h3>
+
+<hr />
+
+<p>在Linux虚拟机中进行rails开发和server构建，通过外边的windows访问应用时，
+速度很慢。</p>
+
+<h3>对策一</h3>
+
+<hr />
+
+<p>参考帖子:  http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html</p>
+
+<p>帖子内容总结（修改了两个文件）<br/>
+修改文件1</p>
+
+<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+文件：server.rb
+方法：GenericServer#start_thread
+代码：
+addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
+</code></pre>
+
+<p>修改文件2</p>
+
+<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+文件：httprequest.rb
+方法：HTTPRequest#parse
+代码：
+@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr : []
+改为
+@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr(:numeric ) : []
+</code></pre>
+
+<h3>对策二</h3>
+
+<hr />
+
+<p>修改内容如下</p>
+
+<pre><code>修改文件：#{RUBY_HOME}/lib/ruby/1.9.1/webrick/config.rb 
+:DoNotReverseLookup =&gt; nil
+改为
+:DoNotReverseLookup =&gt; true
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -243,12 +413,16 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 
   <div class="entry-content"><h3>桌面命令类</h3>
 
+<hr />
+
 <ul>
 <li>切换到不同tty的命令 <code>chvt 1-7</code></li>
 </ul>
 
 
 <h3>实用命令类</h3>
+
+<hr />
 
 <ul>
 <li>查看当前系统发行版的信息 <code>lsb_release</code></li>
@@ -359,23 +533,23 @@ hello, rails!</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/25/usual-command-on-windows/">linux常用命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/25/software-list/">常用软件列表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">在局域网（LAN）中访问webrick服务器速度过慢</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/31/linuxchang-yong-ming-ling/">linux常用命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/30/ru-he-zai-ubuntu-serverzhong-an-zhuang-guijie-mian/">如何在ubuntu server中安装GUI界面</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/22/my-first-blog/">My first blog</a>
       </li>
     
   </ul>

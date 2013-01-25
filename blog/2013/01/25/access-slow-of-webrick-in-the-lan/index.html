@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: env install - 默言，在路上</title>
+  <title>在局域网（LAN）中访问webrick服务器速度过慢 - 默言，在路上</title>
   <meta name="author" content="默言">
 
   
-  <meta name="description" content="Category: env install">
+  <meta name="description" content="问题现象描述 在Linux虚拟机中进行rails开发和server构建，通过外边的windows访问应用时，
+速度很慢。 对策一 参考帖子: http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html 帖子内容总结（修改了两个文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wennylover.github.comblog/categories/env-install/">
+  <link rel="canonical" href="http://wennylover.github.com/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,50 +64,135 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Env Install</h1>
+    
+      <h1 class="entry-title">在局域网（LAN）中访问webrick服务器速度过慢</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T16:09:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h3>问题现象描述</h3>
 
-  
-  <h2>2013</h2>
+<hr />
 
-<article>
-  
-<h1><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a></h1>
-<time datetime="2013-01-25T15:36:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>25</span> <span class='year'>2013</span></time>
+<p>在Linux虚拟机中进行rails开发和server构建，通过外边的windows访问应用时，
+速度很慢。</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/rails/'>rails</a></span>
-</footer>
+<h3>对策一</h3>
 
+<hr />
 
-</article>
+<p>参考帖子:  http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html</p>
 
+<p>帖子内容总结（修改了两个文件）<br/>
+修改文件1</p>
 
+<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+文件：server.rb
+方法：GenericServer#start_thread
+代码：
+addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a></h1>
-<time datetime="2013-01-25T14:58:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>25</span> <span class='year'>2013</span></time>
+<p>修改文件2</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/rails/'>rails</a></span>
-</footer>
+<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+文件：httprequest.rb
+方法：HTTPRequest#parse
+代码：
+@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr : []
+改为
+@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr(:numeric ) : []
+</code></pre>
 
+<h3>对策二</h3>
 
-</article>
+<hr />
 
+<p>修改内容如下</p>
+
+<pre><code>修改文件：#{RUBY_HOME}/lib/ruby/1.9.1/webrick/config.rb 
+:DoNotReverseLookup =&gt; nil
+改为
+:DoNotReverseLookup =&gt; true
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">默言</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T16:09:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/" title="Previous Post: WindowsでNetBeansでrailsのDebug環境の構築(失敗した)">&laquo; WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/25/software-list/" title="Next Post: 常用软件列表">常用软件列表 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -191,7 +277,10 @@
       var disqus_shortname = 'wennylover';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/01/25/access-slow-of-webrick-in-the-lan/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/01/25/access-slow-of-webrick-in-the-lan/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

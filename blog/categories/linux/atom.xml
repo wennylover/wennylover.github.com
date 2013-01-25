@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-01-25T15:55:27+09:00</updated>
+  <updated>2013-01-25T16:53:15+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -69,12 +69,16 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
     <id>http://wennylover.github.com/blog/2012/12/31/linuxchang-yong-ming-ling</id>
     <content type="html"><![CDATA[<h3>桌面命令类</h3>
 
+<hr />
+
 <ul>
 <li>切换到不同tty的命令 <code>chvt 1-7</code></li>
 </ul>
 
 
 <h3>实用命令类</h3>
+
+<hr />
 
 <ul>
 <li>查看当前系统发行版的信息 <code>lsb_release</code></li>
