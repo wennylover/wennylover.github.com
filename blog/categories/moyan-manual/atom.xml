@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: moyan manual | 默言，在路上]]></title>
+  <link href="http://wennylover.github.com/blog/categories/moyan-manual/atom.xml" rel="self"/>
+  <link href="http://wennylover.github.com/"/>
+  <updated>2013-01-25T15:48:41+09:00</updated>
+  <id>http://wennylover.github.com/</id>
+  <author>
+    <name><![CDATA[默言]]></name>
+    <email><![CDATA[rugang6891@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[linux常用命令]]></title>
+    <link href="http://wennylover.github.com/blog/2012/12/31/linuxchang-yong-ming-ling/"/>
+    <updated>2012-12-31T23:47:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2012/12/31/linuxchang-yong-ming-ling</id>
+    <content type="html"><![CDATA[<h3>桌面命令类</h3>
+
+<ul>
+<li>切换到不同tty的命令 <code>chvt 1-7</code></li>
+</ul>
+
+
+<h3>实用命令类</h3>
+
+<ul>
+<li>查看当前系统发行版的信息 <code>lsb_release</code></li>
+<li>查看系统硬件信息目录 <code>/proc</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

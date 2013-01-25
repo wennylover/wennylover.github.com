@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>默言，在路上</title>
+  <title>LinuxでNetBeansでrailsのDebug環境の構築 - 默言，在路上</title>
   <meta name="author" content="默言">
 
   
-  <meta name="description" content="前言 这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。并且在windows这次没有成功。
-特别注意: 这里不是手顺。 正文内容 日本語構築手順 http://www.terut.net/?p=314 &hellip;">
+  <meta name="description" content="前言 这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
+注意事项，主要是碰到一些错误。
+特别注意: 这里不是手顺。 正文内容 ■一番最新のruby-debug-base19 (0.11.26)のインストールが必要です。 ruby-debug-base19 ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wennylover.github.com/">
+  <link rel="canonical" href="http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,79 +64,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-25T15:36:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>前言</h3>
-
-<hr />
-
-<p>这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。并且在windows这次没有成功。<br/>
-特别注意: <em><strong>这里不是手顺</strong></em>。</p>
-
-<h3>正文内容</h3>
-
-<hr />
-
-<ul>
-<li>日本語構築手順<br/>
-  http://www.terut.net/?p=314</li>
-<li><p>windowsでDebug環境の構築（失敗っちゃた）
-■gemfiles に「gem &#8216;ruby-debug19&#8217;」を追加<br/>
-■bundle install を実行する<br/>
-■libv8 -v &#8216;3.3.10.4&#8217;　がインストールされてないです。
-  原因：Checking for Python&#8230;Unable to build libv8: Python not found!
-  Pythonの環境がないです。</p>
-
-<p>  ご参照
-  http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-while-installing-libv8
-■ActivePythonをインストールする
-■再Bundle install して、下記のエラーができ来ました。
-  Installing therubyracer (0.9.10) with native extensions</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a></h1>
+      <h1 class="entry-title">LinuxでNetBeansでrailsのDebug環境の構築</h1>
     
     
       <p class="meta">
@@ -159,7 +92,7 @@
   </header>
 
 
-  <div class="entry-content"><h3>前言</h3>
+<div class="entry-content"><h3>前言</h3>
 
 <hr />
 
@@ -201,71 +134,16 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 
 <p>■linecache19 (0.5.13)</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/31/linuxchang-yong-ming-ling/">Linux常用命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">默言</span></span>
 
-<time datetime="2012-12-31T23:47:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>桌面命令类</h3>
-
-<ul>
-<li>切换到不同tty的命令 <code>chvt 1-7</code></li>
-</ul>
-
-
-<h3>实用命令类</h3>
-
-<ul>
-<li>查看当前系统发行版的信息 <code>lsb_release</code></li>
-<li>查看系统硬件信息目录 <code>/proc</code></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/30/ru-he-zai-ubuntu-serverzhong-an-zhuang-guijie-mian/">如何在ubuntu server中安装GUI界面</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -277,75 +155,44 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
   
 
 
-<time datetime="2012-12-30T13:41:00+09:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>关于ubuntu server</h3>
-
-<p>其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
-比如ubuntu server默认会安装很多服务，比如mysql，apache等等，而desktop版本会默认安装一些常用的办公软件等。
-ubuntu server默认不安装桌面环境，如果需要的话可以按照以下步骤进行安装。</p>
-
-<h3>安装GUI步骤</h3>
-
-<pre><code>1. apt-get install xinit
-2. apt-get install gdm
-3. apt-get install ubuntu-desktop
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-01-25T14:58:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/22/my-first-blog/">My First Blog</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
 
 
-<time datetime="2012-12-22T20:30:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2012</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>hello, octopress!
-hello, rails!</p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/31/linuxchang-yong-ming-ling/" title="Previous Post: linux常用命令">&laquo; linux常用命令</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/" title="Next Post: WindowsでNetBeansでrailsのDebug環境の構築(失敗した)">WindowsでNetBeansでrailsのDebug環境の構築(失敗した) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -378,7 +225,7 @@ hello, rails!</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/wennylover">@wennylover</a> on GitHub
@@ -412,6 +259,7 @@ hello, rails!</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -426,7 +274,10 @@ hello, rails!</p>
       var disqus_shortname = 'wennylover';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

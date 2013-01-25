@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: env install | 默言，在路上]]></title>
+  <link href="http://wennylover.github.com/blog/categories/env-install/atom.xml" rel="self"/>
+  <link href="http://wennylover.github.com/"/>
+  <updated>2013-01-25T15:48:41+09:00</updated>
+  <id>http://wennylover.github.com/</id>
+  <author>
+    <name><![CDATA[默言]]></name>
+    <email><![CDATA[rugang6891@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[WindowsでNetBeansでrailsのDebug環境の構築(失敗した)]]></title>
+    <link href="http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/"/>
+    <updated>2013-01-25T15:36:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows</id>
+    <content type="html"><![CDATA[<h3>前言</h3>
+
+<hr />
+
+<p>这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
+注意事项，主要是碰到一些错误。并且在windows这次没有成功。<br/>
+特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+
+<h3>正文内容</h3>
+
+<hr />
+
+<ul>
+<li>日本語構築手順<br/>
+  http://www.terut.net/?p=314</li>
+<li><p>windowsでDebug環境の構築（失敗っちゃた）
+■gemfiles に「gem 'ruby-debug19'」を追加<br/>
+■bundle install を実行する<br/>
+■libv8 -v '3.3.10.4'　がインストールされてないです。
+  原因：Checking for Python...Unable to build libv8: Python not found!
+  Pythonの環境がないです。</p>
+
+<p>  ご参照
+  http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-while-installing-libv8
+■ActivePythonをインストールする
+■再Bundle install して、下記のエラーができ来ました。
+  Installing therubyracer (0.9.10) with native extensions</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LinuxでNetBeansでrailsのDebug環境の構築]]></title>
+    <link href="http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/"/>
+    <updated>2013-01-25T14:58:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux</id>
+    <content type="html"><![CDATA[<h3>前言</h3>
+
+<hr />
+
+<p>这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
+注意事项，主要是碰到一些错误。<br/>
+特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+
+<h3>正文内容</h3>
+
+<hr />
+
+<p>■一番最新のruby-debug-base19 (0.11.26)のインストールが必要です。</p>
+
+<pre><code>ruby-debug-base19 (0.11.26)
+ruby-debug-ide19 (0.4.12)
+ruby-debug19 (0.11.6)
+
+gem install ruby-debug19 -- --with-ruby-include=C:\ruby\Ruby193\include\ruby-1.9.1\ruby-1.9.3-p286
+curl -OL http://rubyforge.org/frs/download.php/75415/ruby-debug-base19-0.11.26.gem
+curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
+
+====ご参照===
+https://gist.github.com/1457544
+http://ruby-china.org/topics/843
+</code></pre>
+
+<p>■environment.rbに下記のメソッドの追加が必要です。</p>
+
+<pre><code># add by dairg 20121101
+class String
+  def is_binary_data?
+    ( self.count( "^ -~", "^\r\n" ).fdiv(self.size) &gt; 0.3 || self.index( "\x00" ) ) unless empty?
+  end
+end
+
+=====ご参照=====
+http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-debugthread-loop-undefined-method-is-bin/9043481#9043481
+</code></pre>
+
+<p>■linecache19 (0.5.13)</p>
+]]></content>
+  </entry>
+  
+</feed>
