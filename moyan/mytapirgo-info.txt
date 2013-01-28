@@ -1,0 +1,3 @@
+Thanks for using Tapir! Your token is "51062cd73f61b0411800020e" and your secret token is "0bc8f551139b2c37c7d42863a571995842cac4ed" (don't give it to anyone!). 
+Your RSS feed is being indexed right now. After a minute or two, you'll be able to search your blog's content using the API. 
+In the meanwhile check out the JQuery plugin to implement Tapir in your site.

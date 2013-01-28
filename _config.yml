@@ -97,3 +97,8 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# ----------------------- #
+# Search  http://tapirgo.com  #
+# ----------------------- #
+tapir_token: 51062cd73f61b0411800020e
