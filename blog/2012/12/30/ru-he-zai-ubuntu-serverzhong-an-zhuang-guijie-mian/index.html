@@ -1,97 +1,79 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>如何在ubuntu server中安装GUI界面 - 默言，在路上</title>
-  <meta name="author" content="默言">
-
-  
-  <meta name="description" content="关于ubuntu server 其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
+	<meta charset="utf-8">
+	<title>如何在ubuntu server中安装GUI界面 - 默言，在路上</title>
+    <meta name="author" content="默言">
+    
+	<meta name="description" content="关于ubuntu server 其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
 比如ubuntu server默认会安装很多服务，比如mysql，apache等等，而desktop版本会默认安装一些常用的办公软件等。 &hellip;">
-  
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/atom.xml" rel="alternate" title="默言，在路上" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
-  
-  <link rel="canonical" href="http://wennylover.github.com/blog/2012/12/30/ru-he-zai-ubuntu-serverzhong-an-zhuang-guijie-mian/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="默言，在路上" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
-  
+    <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
 
+    <!-- remove or comment it to disable ajaxification -->   
+    <script src="/javascripts/ajaxify.js"></script>
+   
+    
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">默言，在路上</a></h1>
-  
-    <h2>每天进步一点...</h2>
-  
-</hgroup>
+
+<body>
+    <div id="wrapper">
+    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<!--
+<h1 class="animated bounceInDown">
+    <div id="headerbg">
+        默言
+    </div>
+</h1>
+<br>
+-->
+
+<!-- use full url including 'index.html' for navigation bar if you are using ajax -->
+<ul id="nav">
+	<li id="ajax"><a href="/index.html">Home</a></li>
+	<li id="ajax"><a href="/blog/archives/index.html">Archives</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    
+    <li>
+    <div id="dark">
+        <form method="get" action="/search.html" id="search">
+            <input name="query" type="text" style="margin-top:20px;" size="40" placeholder="Search..." x-webkit-speech />
+        </form>
+    </div>
+    </li>
+        
+    
+    <div style="float: right;margin-top: 15px;display: inline-block; padding-right: 20px; color: rgb(138, 139, 136);">
+		<h2>默言，在路上</h2>
+	</div>
+</ul>
+
+
+
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:wennylover.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">如何在ubuntu server中安装GUI界面</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-30T13:41:00+09:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><h3>关于ubuntu server</h3>
+<div id="toload">
+<!-- begin toload --> 
+    <div id="content" class="inner">
+        <article class="post">
+	<h2 class="title">如何在ubuntu server中安装GUI界面</h2>
+	<div class="entry-content"><h3>关于ubuntu server</h3>
 
 <p>其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
 比如ubuntu server默认会安装很多服务，比如mysql，apache等等，而desktop版本会默认安装一些常用的办公软件等。
@@ -105,140 +87,49 @@ ubuntu server默认不安装桌面环境，如果需要的话可以按照以下�
 </code></pre>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">默言</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-30T13:41:00+09:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
+<div class="meta">
+	
 </div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/12/22/my-first-blog/" title="Previous Post: My first blog">&laquo; My first blog</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/12/31/linuxchang-yong-ming-ling/" title="Next Post: linux常用命令">linux常用命令 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/01/25/usual-command-on-windows/">Windows常用命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/25/software-list/">常用软件列表</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">在局域网（LAN）中访问webrick服务器速度过慢</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a>
-      </li>
-    
-  </ul>
 </section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/wennylover">@wennylover</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'wennylover',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-
-  
-</aside>
-
 
     </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - 默言 -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+    <footer id="footer">
+    <div style="display:inline">
+    Copyright &copy; 2013
 
-</footer>
-  
+    默言
+. Powered by <a href="http://octopress.org">Octopress</a> | 
+    Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
+</div>
+
+
+    </footer>
+    <script src="/javascripts/fabric.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'wennylover';
@@ -262,9 +153,14 @@ ubuntu server默认不安装桌面环境，如果需要的话可以按照以下�
 
 
 
-
-
-
-
+<!-- end toload --> 
+</div>
+</div>
+<script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery); 
+/*]]>*/
+</script><!-- remove it to remove the scroll to top button -->
 </body>
 </html>
