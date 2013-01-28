@@ -8,6 +8,8 @@ categories: [moyan manual]
 
 ### Windows系
 ----
+* VirtuaWin
+	windows下的虚拟桌面软件（有portable版本）
 
 ### Linux系
 ----
