@@ -15,3 +15,7 @@ categories: [linux, moyan manual]
 ----
 * 查看当前系统发行版的信息 `lsb_release`
 * 查看系统硬件信息目录 `/proc`
+* 文本处理三剑客 `grep` `sed` `awk`
+	1. grep:主要是查找字符串
+	2. sed:主要是以行为单位处理字符串
+	3. awk:主要是针对一行字符串，利用间隔符，对每一段进行处理
