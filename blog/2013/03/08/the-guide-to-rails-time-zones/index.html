@@ -3,11 +3,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>常用软件列表 - 默言，在路上</title>
+	<title>rails应用中timezones的正确用法 - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="Windows系 VirtuaWin windows下的虚拟桌面软件（有portable版本） Linux系 rabbitvcs linux下的SVN client，类似windows下的TortoiseSVN。
-nautinus Linux下的资源管理器（resource manager）。 ">
+	<meta name="description" content="说明 本文参照翻译了以下博文: The Exhaustive Guide to Rails Time Zones
+作者: Alexander 正文 得到当前时间 正确做法
+Time.zone.now 可接受做法
+Time.now.in_time_zone
+DateTime.now. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -73,26 +76,100 @@ nautinus Linux下的资源管理器（resource manager）。 ">
 <!-- begin toload --> 
     <div id="content" class="inner">
         <article class="post">
-	<h2 class="title">常用软件列表</h2>
-	<div class="entry-content"><h3>Windows系</h3>
+	<h2 class="title">Rails应用中timezones的正确用法</h2>
+	<div class="entry-content"><h3>说明</h3>
+
+<hr />
+
+<p>本文参照翻译了以下博文:</p>
+
+<p><a href="http://danilenko.org/2012/7/6/rails_timezones/">The Exhaustive Guide to Rails Time Zones</a><br/>
+作者: Alexander</p>
+
+<h3>正文</h3>
 
 <hr />
 
 <ul>
-<li>VirtuaWin<br/>
-  windows下的虚拟桌面软件（有portable版本）</li>
+<li>得到当前时间
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.now</p>
+
+<p><code>可接受做法</code><br/>
+Time.now.in_time_zone<br/>
+DateTime.now.in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+Time.now<br/>
+DateTime.now</p></blockquote></li>
+<li>得到日期（比如今天，昨天等）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.today<br/>
+Time.zone.today - 1.day</p>
+
+<p><code>可接受做法</code><br/>
+Date.current<br/>
+Date.yesterday</p>
+
+<p><code>错误做法</code><br/>
+Date.today</p></blockquote></li>
+<li>生成Time（Build Time）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.local(2013, 3, 8, 10, 00)</p>
+
+<p><code>错误做法</code><br/>
+Time.new(2013, 3, 8, 10, 00)<br/>
+DateTime.new(2013, 3, 8, 10, 00)</p></blockquote></li>
+<li>从时间戳生成Time（Time from Timestamp）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.at(Timestamp)</p>
+
+<p><code>可接受做法</code><br/>
+Time.at(Timestamp).in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+Time.at(Timestamp)</p></blockquote></li>
+<li>解析时间（简单）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.parse(str)</p>
+
+<p><code>错误做法</code><br/>
+Time.parse(str)</p></blockquote></li>
+<li>解析时间（按照严格格式）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;)<br/>
+注意：这种比较好的做法，需要引入作者自己写的gem。<a href="https://github.com/doz/time_zone_ext">TimeZoneExt</a></p>
+
+<p><code>可接受做法</code><br/>
+DateTime.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;).in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+DateTime.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;)</p></blockquote></li>
+<li>日期转时间（Get Time From Date）
+
+<blockquote><p><code>正确做法</code><br/>
+date.beginning_of_day</p>
+
+<p><code>可接受做法</code><br/>
+date.to_time_in_current_zone</p>
+
+<p><code>错误做法</code><br/>
+date.to_time</p></blockquote></li>
 </ul>
 
 
-<h3>Linux系</h3>
+<h3>注意事项</h3>
 
 <hr />
 
 <ul>
-<li>rabbitvcs<br/>
-  linux下的SVN client，类似windows下的TortoiseSVN。</li>
-<li>nautinus<br/>
-  Linux下的资源管理器（resource manager）。</li>
+<li>ruby的标准库中，比如Time和DateTime类是没有考虑时区（TimeZone）的概念在里面的。</li>
 </ul>
 
 </div>
@@ -146,8 +223,8 @@ nautinus Linux下的资源管理器（resource manager）。 ">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wennylover.github.com/blog/2013/01/25/software-list/';
-        var disqus_url = 'http://wennylover.github.com/blog/2013/01/25/software-list/';
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/03/08/the-guide-to-rails-time-zones/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/03/08/the-guide-to-rails-time-zones/';
         var disqus_script = 'embed.js';
       
     (function () {

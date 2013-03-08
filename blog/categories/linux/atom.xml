@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-01-28T17:16:12+09:00</updated>
+  <updated>2013-03-08T10:06:59+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -83,6 +83,15 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 <ul>
 <li>查看当前系统发行版的信息 <code>lsb_release</code></li>
 <li>查看系统硬件信息目录 <code>/proc</code></li>
+<li>文本处理三剑客 <code>grep</code> <code>sed</code> <code>awk</code>
+
+<ol>
+<li>grep:主要是查找字符串</li>
+<li>sed:主要是以行为单位处理字符串</li>
+<li>awk:主要是针对一行字符串，利用间隔符，对每一段进行处理</li>
+</ol>
+</li>
+<li>列出所有打开的文件，可以进行各种网络调试等。 <code>lsof</code></li>
 </ul>
 
 ]]></content>

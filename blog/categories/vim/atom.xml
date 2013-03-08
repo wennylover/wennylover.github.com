@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | 默言，在路上]]></title>
+  <link href="http://wennylover.github.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://wennylover.github.com/"/>
+  <updated>2013-03-08T10:06:59+09:00</updated>
+  <id>http://wennylover.github.com/</id>
+  <author>
+    <name><![CDATA[默言]]></name>
+    <email><![CDATA[rugang6891@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vim常用总结]]></title>
+    <link href="http://wennylover.github.com/blog/2013/03/07/vim-tips/"/>
+    <updated>2013-03-07T10:44:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/03/07/vim-tips</id>
+    <content type="html"><![CDATA[<h4>自动补全</h4>
+
+<hr />
+
+<ol>
+<li><code>ctrl-x</code></li>
+<li><code>help i_ctrl-x</code></li>
+</ol>
+
+
+<h4>收缩代码</h4>
+
+<hr />
+
+<ol>
+<li>zf</li>
+<li>zdgit</li>
+<li>zo</li>
+<li>zc</li>
+<li>mkview</li>
+<li>loadvie</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[windows下安装ctags]]></title>
+    <link href="http://wennylover.github.com/blog/2013/03/07/install-ctags-on-windows/"/>
+    <updated>2013-03-07T10:21:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/03/07/install-ctags-on-windows</id>
+    <content type="html"><![CDATA[<h4>背景</h4>
+
+<hr />
+
+<p>在windows中安装了gvim后，如果使用了taglist等插件后，启动gvim，
+会报错，因为找不到ctags命令，而在linux下，默认会安装ctags命令。</p>
+
+<h4>安装过程</h4>
+
+<hr />
+
+<ol>
+<li>下载安装包: http://ctags.sourceforge.net/</li>
+<li>将下载的zip包解压到 <code>vim/vim73/</code> 目录下</li>
+<li>将 <code>ctags/</code> 目录添加到环境变量path中</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

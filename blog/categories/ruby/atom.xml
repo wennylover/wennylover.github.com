@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | 默言，在路上]]></title>
+  <link href="http://wennylover.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://wennylover.github.com/"/>
+  <updated>2013-03-08T10:06:59+09:00</updated>
+  <id>http://wennylover.github.com/</id>
+  <author>
+    <name><![CDATA[默言]]></name>
+    <email><![CDATA[rugang6891@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby,Rails的一些概念和注意点]]></title>
+    <link href="http://wennylover.github.com/blog/2013/02/05/ruby-rails-tips/"/>
+    <updated>2013-02-05T14:39:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/02/05/ruby-rails-tips</id>
+    <content type="html"><![CDATA[<h4>Ruby,Rails的一些概念</h4>
+
+<hr />
+
+<ul>
+<li>rvm: ruby version manager, Ruby版本管理工具</li>
+<li>gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下的apt-get<br/>
+  ruby1.9.2以前版本需要 <code>require 'rubygems'</code> ，ruby1.9.2开始已经自动包含gem。</li>
+<li>bundle: 用来管理一个rails web工程的所有gem包的依赖，版本等。</li>
+<li>rake: 一个gem包，也就是一个ruby程序，作用是用来执行其他用ruby开发的task的程序。</li>
+<li>rack: A Ruby Webserver interface.是一个提供了一个ruby web服务器和ruby web框架之间的最小接口的gem程序。主要是web框架开发者用的。</li>
+</ul>
+
+
+<h4>Ruby,Rails的一些注意点</h4>
+
+<hr />
+
+<ul>
+<li>.ru后缀的文件就是rackup文件。比如rails应用中的config.ru,可以通过 <code>rackup config.ru</code> 来执行rackup文件。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

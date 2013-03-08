@@ -6,8 +6,9 @@
 	<title>默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content=" Published on: Jan 25th, 2013 Tags: moyan manual tracert www.github.com
-可以查看到连接到host的路由经过，可以借此查看自己的外网IP。 ">
+	<meta name="description" content="Published on: Mar 8th, 2013 Tags: rails 说明 本文参照翻译了以下博文: The Exhaustive Guide to Rails Time Zones
+作者: Alexander 正文 得到当前时间 正确做法
+Time.zone.now 可接受做法 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -73,6 +74,390 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/08/the-guide-to-rails-time-zones/">
+		
+			Rails应用中timezones的正确用法</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-08T11:08:00+09:00" pubdate data-updated="true">Mar 8<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>
+
+
+</div>
+    </div>
+		<h3>说明</h3>
+
+<hr />
+
+<p>本文参照翻译了以下博文:</p>
+
+<p><a href="http://danilenko.org/2012/7/6/rails_timezones/">The Exhaustive Guide to Rails Time Zones</a><br/>
+作者: Alexander</p>
+
+<h3>正文</h3>
+
+<hr />
+
+<ul>
+<li>得到当前时间
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.now</p>
+
+<p><code>可接受做法</code><br/>
+Time.now.in_time_zone<br/>
+DateTime.now.in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+Time.now<br/>
+DateTime.now</p></blockquote></li>
+<li>得到日期（比如今天，昨天等）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.today<br/>
+Time.zone.today - 1.day</p>
+
+<p><code>可接受做法</code><br/>
+Date.current<br/>
+Date.yesterday</p>
+
+<p><code>错误做法</code><br/>
+Date.today</p></blockquote></li>
+<li>生成Time（Build Time）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.local(2013, 3, 8, 10, 00)</p>
+
+<p><code>错误做法</code><br/>
+Time.new(2013, 3, 8, 10, 00)<br/>
+DateTime.new(2013, 3, 8, 10, 00)</p></blockquote></li>
+<li>从时间戳生成Time（Time from Timestamp）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.at(Timestamp)</p>
+
+<p><code>可接受做法</code><br/>
+Time.at(Timestamp).in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+Time.at(Timestamp)</p></blockquote></li>
+<li>解析时间（简单）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.parse(str)</p>
+
+<p><code>错误做法</code><br/>
+Time.parse(str)</p></blockquote></li>
+<li>解析时间（按照严格格式）
+
+<blockquote><p><code>正确做法</code><br/>
+Time.zone.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;)<br/>
+注意：这种比较好的做法，需要引入作者自己写的gem。<a href="https://github.com/doz/time_zone_ext">TimeZoneExt</a></p>
+
+<p><code>可接受做法</code><br/>
+DateTime.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;).in_time_zone</p>
+
+<p><code>错误做法</code><br/>
+DateTime.strptime(str, &#8220;%Y-%m-%d %H:%M %Z&#8221;)</p></blockquote></li>
+<li>日期转时间（Get Time From Date）
+
+<blockquote><p><code>正确做法</code><br/>
+date.beginning_of_day</p>
+
+<p><code>可接受做法</code><br/>
+date.to_time_in_current_zone</p>
+
+<p><code>错误做法</code><br/>
+date.to_time</p></blockquote></li>
+</ul>
+
+
+<h3>注意事项</h3>
+
+<hr />
+
+<ul>
+<li>ruby的标准库中，比如Time和DateTime类是没有考虑时区（TimeZone）的概念在里面的。</li>
+</ul>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/07/my-octopress-post-syntax/">
+		
+			我的octopress博客写法总结</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-07T10:51:00+09:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/moyan-manual/'>moyan manual</a>
+
+
+</div>
+    </div>
+		<p>我的octopress博客写法遵循如下:</p>
+
+<ul>
+<li>写小标题分段如下:</li>
+</ul>
+
+
+<h4>小标题</h4>
+
+<hr />
+
+<ul>
+<li>对于在句子中用到的命令，写法如下:</li>
+</ul>
+
+
+<p>这里是一个命令 <code>git status</code> ，用来查看当前git仓库的状态。</p>
+
+<ul>
+<li>使用 <code>*</code> 进行无须列表，使用 <code>1.</code> 进行有序列表</li>
+</ul>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/07/vim-tips/">
+		
+			Vim常用总结</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-07T10:44:00+09:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/moyan-manual/'>moyan manual</a>, <a class='category' href='/blog/categories/vim/'>vim</a>
+
+
+</div>
+    </div>
+		<h4>自动补全</h4>
+
+<hr />
+
+<ol>
+<li><code>ctrl-x</code></li>
+<li><code>help i_ctrl-x</code></li>
+</ol>
+
+
+<h4>收缩代码</h4>
+
+<hr />
+
+<ol>
+<li>zf</li>
+<li>zdgit</li>
+<li>zo</li>
+<li>zc</li>
+<li>mkview</li>
+<li>loadvie</li>
+</ol>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/07/install-ctags-on-windows/">
+		
+			Windows下安装ctags</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-07T10:21:00+09:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/vim/'>vim</a>
+
+
+</div>
+    </div>
+		<h4>背景</h4>
+
+<hr />
+
+<p>在windows中安装了gvim后，如果使用了taglist等插件后，启动gvim，
+会报错，因为找不到ctags命令，而在linux下，默认会安装ctags命令。</p>
+
+<h4>安装过程</h4>
+
+<hr />
+
+<ol>
+<li>下载安装包: http://ctags.sourceforge.net/</li>
+<li>将下载的zip包解压到 <code>vim/vim73/</code> 目录下</li>
+<li>将 <code>ctags/</code> 目录添加到环境变量path中</li>
+</ol>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/05/ruby-rails-tips/">
+		
+			Ruby,Rails的一些概念和注意点</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-05T14:39:00+09:00" pubdate data-updated="true">Feb 5<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+    </div>
+		<h4>Ruby,Rails的一些概念</h4>
+
+<hr />
+
+<ul>
+<li>rvm: ruby version manager, Ruby版本管理工具</li>
+<li>gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下的apt-get<br/>
+  ruby1.9.2以前版本需要 <code>require 'rubygems'</code> ，ruby1.9.2开始已经自动包含gem。</li>
+<li>bundle: 用来管理一个rails web工程的所有gem包的依赖，版本等。</li>
+<li>rake: 一个gem包，也就是一个ruby程序，作用是用来执行其他用ruby开发的task的程序。</li>
+<li>rack: A Ruby Webserver interface.是一个提供了一个ruby web服务器和ruby web框架之间的最小接口的gem程序。主要是web框架开发者用的。</li>
+</ul>
+
+
+<h4>Ruby,Rails的一些注意点</h4>
+
+<hr />
+
+<ul>
+<li>.ru后缀的文件就是rackup文件。比如rails应用中的config.ru,可以通过 <code>rackup config.ru</code> 来执行rackup文件。</li>
+</ul>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -156,7 +541,7 @@
 <hr />
 
 <ul>
-<li>VirtuaWin
+<li>VirtuaWin<br/>
   windows下的虚拟桌面软件（有portable版本）</li>
 </ul>
 
@@ -473,6 +858,15 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 <ul>
 <li>查看当前系统发行版的信息 <code>lsb_release</code></li>
 <li>查看系统硬件信息目录 <code>/proc</code></li>
+<li>文本处理三剑客 <code>grep</code> <code>sed</code> <code>awk</code>
+
+<ol>
+<li>grep:主要是查找字符串</li>
+<li>sed:主要是以行为单位处理字符串</li>
+<li>awk:主要是针对一行字符串，利用间隔符，对每一段进行处理</li>
+</ol>
+</li>
+<li>列出所有打开的文件，可以进行各种网络调试等。 <code>lsof</code></li>
 </ul>
 
 

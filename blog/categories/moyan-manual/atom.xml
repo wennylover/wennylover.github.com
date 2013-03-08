@@ -4,7 +4,7 @@
   <title><![CDATA[Category: moyan manual | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/moyan-manual/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-01-28T17:16:12+09:00</updated>
+  <updated>2013-03-08T10:06:59+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我的octopress博客写法总结]]></title>
+    <link href="http://wennylover.github.com/blog/2013/03/07/my-octopress-post-syntax/"/>
+    <updated>2013-03-07T10:51:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/03/07/my-octopress-post-syntax</id>
+    <content type="html"><![CDATA[<p>我的octopress博客写法遵循如下:</p>
+
+<ul>
+<li>写小标题分段如下:</li>
+</ul>
+
+
+<h4>小标题</h4>
+
+<hr />
+
+<ul>
+<li>对于在句子中用到的命令，写法如下:</li>
+</ul>
+
+
+<p>这里是一个命令 <code>git status</code> ，用来查看当前git仓库的状态。</p>
+
+<ul>
+<li>使用 <code>*</code> 进行无须列表，使用 <code>1.</code> 进行有序列表</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[vim常用总结]]></title>
+    <link href="http://wennylover.github.com/blog/2013/03/07/vim-tips/"/>
+    <updated>2013-03-07T10:44:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/03/07/vim-tips</id>
+    <content type="html"><![CDATA[<h4>自动补全</h4>
+
+<hr />
+
+<ol>
+<li><code>ctrl-x</code></li>
+<li><code>help i_ctrl-x</code></li>
+</ol>
+
+
+<h4>收缩代码</h4>
+
+<hr />
+
+<ol>
+<li>zf</li>
+<li>zdgit</li>
+<li>zo</li>
+<li>zc</li>
+<li>mkview</li>
+<li>loadvie</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Windows常用命令]]></title>
@@ -36,7 +97,7 @@
 <hr />
 
 <ul>
-<li>VirtuaWin
+<li>VirtuaWin<br/>
   windows下的虚拟桌面软件（有portable版本）</li>
 </ul>
 
@@ -76,6 +137,15 @@
 <ul>
 <li>查看当前系统发行版的信息 <code>lsb_release</code></li>
 <li>查看系统硬件信息目录 <code>/proc</code></li>
+<li>文本处理三剑客 <code>grep</code> <code>sed</code> <code>awk</code>
+
+<ol>
+<li>grep:主要是查找字符串</li>
+<li>sed:主要是以行为单位处理字符串</li>
+<li>awk:主要是针对一行字符串，利用间隔符，对每一段进行处理</li>
+</ol>
+</li>
+<li>列出所有打开的文件，可以进行各种网络调试等。 <code>lsof</code></li>
 </ul>
 
 ]]></content>
