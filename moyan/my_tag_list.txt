@@ -6,3 +6,4 @@ moyan manual:参考手册，常用的经常用来参考的博客文章
 rails
 ruby
 env install:安装各种环境的文章
+vim
