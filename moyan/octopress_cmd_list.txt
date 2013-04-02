@@ -5,3 +5,17 @@ rake deploy
 rake preview
 
 rake new_post['my post title']
+
+
+
+=== 说明事项
+1. 每次写博客，如果紧急的话，直接写好博客，或者修改了博客内容，然后直接push 到git的source分支，就可以。
+   这样的话，最新的博客上面是反映不出来修改的，但是以后可以再执行rake generate，rake deploy，最起码内容
+   已经存在了。
+
+=== 一般的写博客流程
+1. rake new_post['title']
+2. 修改生成的post文件，写入博客内容
+3. git push origin source ： 将博客内容源文件存到github上
+4. rake generate
+5. rake deploy
