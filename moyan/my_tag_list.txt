@@ -1,5 +1,10 @@
 Here is My Tag List
+=======================================
+默认写categories时的模板(中间是空格分开)
 
+categories: [moyan manual]
+
+=======================================
 linux
 ubuntu
 moyan manual:参考手册，常用的经常用来参考的博客文章

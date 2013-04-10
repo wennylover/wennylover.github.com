@@ -16,6 +16,7 @@ rake new_post['my post title']
 === 一般的写博客流程
 1. rake new_post['title']
 2. 修改生成的post文件，写入博客内容
+   可以参照 2013-03-07-my-octopress-post-syntax.markdown  这边文章中的格式。
 3. git push origin source ： 将博客内容源文件存到github上
 4. rake generate
 5. rake deploy
