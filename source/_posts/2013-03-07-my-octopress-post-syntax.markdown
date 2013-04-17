@@ -18,3 +18,7 @@ categories: [moyan manual]
 这里是一个命令 `git status` ，用来查看当前git仓库的状态。
 
 * 使用 `*` 进行无须列表，使用 `1.` 进行有序列表
+
+* 写链接  
+
+[一篇很好的讲到linux软连接和硬链接的文章](http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/)
