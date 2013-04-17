@@ -26,3 +26,9 @@ categories: [linux, moyan manual]
 
 * 查看可用分辨率 `xrandr`
 * 设置分辨率 `xrandr -s 可用分辨率的具体数字`
+
+
+### 好的参考资源
+----
+
+* [一篇很好的讲到linux软连接和硬链接的文章](http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/)
