@@ -26,6 +26,7 @@ categories: [linux, moyan manual]
 
 * 查看可用分辨率 `xrandr`
 * 设置分辨率 `xrandr -s 可用分辨率的具体数字`
+* 输出要添加到xorg文件中section minitor的内容 `gtf 1024 768 70`, 参数是分辨率和刷新频率
 * 生成xorg文件 `xorg -configure`, 拷贝到 `/etc/X11/xorg.conf`
 
 
