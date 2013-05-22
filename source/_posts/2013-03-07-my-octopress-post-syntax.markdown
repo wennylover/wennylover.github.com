@@ -22,3 +22,11 @@ categories: [moyan manual]
 * 写链接  
 
 [一篇很好的讲到linux软连接和硬链接的文章](http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/)
+
+* 写代码片段（每行前面是一个tab，或者四个空格）
+
+	路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+	文件：server.rb
+	方法：GenericServer#start_thread
+	代码：
+	addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
