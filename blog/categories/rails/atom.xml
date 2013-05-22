@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-04-02T11:48:02+09:00</updated>
+  <updated>2013-05-22T11:20:19+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于Rails中的SSL]]></title>
+    <link href="http://wennylover.github.com/blog/2013/05/22/the-ssl-in-rails/"/>
+    <updated>2013-05-22T10:59:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/05/22/the-ssl-in-rails</id>
+    <content type="html"><![CDATA[<h4>关于force SSL请求的配置</h4>
+
+<hr />
+
+<p>只需要在config文件（比如application.rb）中添加如下配置:<br/>
+<code>config.force_ssl = true</code></p>
+
+<p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
+
+<ul>
+<li><p>在Gemfile中添加如下内容:</p>
+
+<p>  group :development do</p>
+
+<pre><code>gem 'thin'
+</code></pre>
+
+<p>  end</p></li>
+<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+</ul>
+
+
+<h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
+
+<ul>
+<li><p>在配置文件中做如下配置</p>
+
+<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }</p>
+
+<p>  注1：可能需要在头部 require 'rack/ssl'
+  注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
+
+<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
+</code></pre></li>
+<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
+
+<p>  before_filter :force_ssl</p>
+
+<p>  def force_ssl</p>
+
+<pre><code>if !request.ssl?
+  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
+end
+</code></pre>
+
+<p>  end</p></li>
+<li><p>这个时候测试的话可能需要启动两个服务器<br/>
+  # thin start -p 3000<br/>
+  # thin start -ssl -p 3001</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rails中helper的加载和相关设置，以及如何设置不全部加载所有helper]]></title>
+    <link href="http://wennylover.github.com/blog/2013/04/10/rails-helper-load-and-setting/"/>
+    <updated>2013-04-10T10:30:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/04/10/rails-helper-load-and-setting</id>
+    <content type="html"><![CDATA[<h4>关于helper的总结</h4>
+
+<hr />
+
+<ul>
+<li>rails默认为controller加载所有的helper，所以helper 方法无论写在那个文件中，都可以在view层调用。</li>
+<li><p>设置不要默认加载所有的helper
+  Rails >= 3.1 时，通过在配置文件中，添加如下设置:<br/>
+  config.action_controller.include_all_helpers = false</p>
+
+<p>  Rails &lt; 3.1,默认在ApplicationController中有以下行，删除即可<br/>
+  helper :all</p></li>
+<li><p>如果经过以上的配置，那么controller默认就只会加载自己对应的helper，如果controller有继承关系，那么也会加载父类对应的helper</p></li>
+<li>通过在controller中使用以下方法，可以加载制定的helper: <code>helper CommonHelper</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rails应用中timezones的正确用法]]></title>
@@ -196,98 +279,6 @@ addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
 改为
 :DoNotReverseLookup =&gt; true
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[WindowsでNetBeansでrailsのDebug環境の構築(失敗した)]]></title>
-    <link href="http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/"/>
-    <updated>2013-01-25T15:36:00+09:00</updated>
-    <id>http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows</id>
-    <content type="html"><![CDATA[<h3>前言</h3>
-
-<hr />
-
-<p>这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。并且在windows这次没有成功。<br/>
-特别注意: <em><strong>这里不是手顺</strong></em>。</p>
-
-<h3>正文内容</h3>
-
-<hr />
-
-<ul>
-<li>日本語構築手順<br/>
-  http://www.terut.net/?p=314</li>
-<li>windowsでDebug環境の構築（失敗っちゃた）</li>
-</ul>
-
-
-<p>■gemfiles に「gem 'ruby-debug19'」を追加<br/>
-■bundle install を実行する<br/>
-■libv8 -v '3.3.10.4'　がインストールされてないです。</p>
-
-<pre><code>原因：Checking for Python...Unable to build libv8: Python not found!
-Pythonの環境がないです。
-
-ご参照
-http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-while-installing-libv8
-</code></pre>
-
-<p>■ActivePythonをインストールする<br/>
-■再Bundle install して、下記のエラーができ来ました。</p>
-
-<pre><code>Installing therubyracer (0.9.10) with native extensions
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LinuxでNetBeansでrailsのDebug環境の構築]]></title>
-    <link href="http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/"/>
-    <updated>2013-01-25T14:58:00+09:00</updated>
-    <id>http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux</id>
-    <content type="html"><![CDATA[<h3>前言</h3>
-
-<hr />
-
-<p>这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。<br/>
-特别注意: <em><strong>这里不是手顺</strong></em>。</p>
-
-<h3>正文内容</h3>
-
-<hr />
-
-<p>■一番最新のruby-debug-base19 (0.11.26)のインストールが必要です。</p>
-
-<pre><code>ruby-debug-base19 (0.11.26)
-ruby-debug-ide19 (0.4.12)
-ruby-debug19 (0.11.6)
-
-gem install ruby-debug19 -- --with-ruby-include=C:\ruby\Ruby193\include\ruby-1.9.1\ruby-1.9.3-p286
-curl -OL http://rubyforge.org/frs/download.php/75415/ruby-debug-base19-0.11.26.gem
-curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
-
-====ご参照===
-https://gist.github.com/1457544
-http://ruby-china.org/topics/843
-</code></pre>
-
-<p>■environment.rbに下記のメソッドの追加が必要です。</p>
-
-<pre><code># add by dairg 20121101
-class String
-  def is_binary_data?
-    ( self.count( "^ -~", "^\r\n" ).fdiv(self.size) &gt; 0.3 || self.index( "\x00" ) ) unless empty?
-  end
-end
-
-=====ご参照=====
-http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-debugthread-loop-undefined-method-is-bin/9043481#9043481
-</code></pre>
-
-<p>■linecache19 (0.5.13)</p>
 ]]></content>
   </entry>
   

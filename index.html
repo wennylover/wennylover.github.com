@@ -6,9 +6,8 @@
 	<title>默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="Published on: Mar 8th, 2013 Tags: rails 说明 本文参照翻译了以下博文: The Exhaustive Guide to Rails Time Zones
-作者: Alexander 正文 得到当前时间 正确做法
-Time.zone.now 可接受做法 &hellip;">
+	<meta name="description" content="Published on: May 22nd, 2013 Tags: rails, ssl 关于force SSL请求的配置 只需要在config文件（比如application.rb）中添加如下配置:
+config.force_ssl = true 关于如何启动支持SSL的server， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +73,224 @@ Time.zone.now 可接受做法 &hellip;">
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/22/the-ssl-in-rails/">
+		
+			关于Rails中的SSL</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-22T10:59:00+09:00" pubdate data-updated="true">May 22<span>nd</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ssl/'>ssl</a>
+
+
+</div>
+    </div>
+		<h4>关于force SSL请求的配置</h4>
+
+<hr />
+
+<p>只需要在config文件（比如application.rb）中添加如下配置:<br/>
+<code>config.force_ssl = true</code></p>
+
+<p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
+
+<ul>
+<li><p>在Gemfile中添加如下内容:</p>
+
+<p>  group :development do</p>
+
+<pre><code>gem 'thin'
+</code></pre>
+
+<p>  end</p></li>
+<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+</ul>
+
+
+<h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
+
+<ul>
+<li><p>在配置文件中做如下配置</p>
+
+<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env[&#8216;HTTPS&#8217;] != &#8216;on&#8217; }</p>
+
+<p>  注1：可能需要在头部 require &#8216;rack/ssl&#8217;
+  注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
+
+<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
+</code></pre></li>
+<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
+
+<p>  before_filter :force_ssl</p>
+
+<p>  def force_ssl</p>
+
+<pre><code>if !request.ssl?
+  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
+end
+</code></pre>
+
+<p>  end</p></li>
+<li><p>这个时候测试的话可能需要启动两个服务器<br/>
+  # thin start -p 3000<br/>
+  # thin start -ssl -p 3001</p></li>
+</ul>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/04/11/linux-network-setting/">
+		
+			Linux下网络设置</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-11T17:26:00+09:00" pubdate data-updated="true">Apr 11<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/linux/'>linux</a>
+
+
+</div>
+    </div>
+		<h4>Ubuntu系统</h4>
+
+<hr />
+
+<ul>
+<li>网络配置文件路径: <code>/etc/network/interfaces</code></li>
+<li>路由设置配置文件路径: <code>/etc/resolv.conf</code><br/>
+  注意有时候经常设置固定ip后上不了网，这个时候可能是因为dns配置没有修改过来。</li>
+</ul>
+
+
+<h4>CentOS系统</h4>
+
+<hr />
+
+<ul>
+<li>网络配置文件路径:  <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code></li>
+<li>路由设置配置文件路径: <code>/etc/resolv.conf</code> , 这个文件手动改不管用，会自动改回去，可以在上面的配置中加入DNS的配置，重启网络就可以自动重新配置这个文件。</li>
+</ul>
+
+
+<h4>特别注意</h4>
+
+<hr />
+
+<p>如果要在windows端手动的修改vmnet8的ip地址等，那么修改之后如果还需要让虚拟机访问外网，那么需要针对能够上外网的网卡进行共享配置。
+比如现在是local network有限上网，那么就需要在本地网络的属性中有[共有]那个tab里面要把本地网络共享给vmnet8，这样的话，才可以在
+虚拟机里面上外网。</p>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/04/10/rails-helper-load-and-setting/">
+		
+			Rails中helper的加载和相关设置，以及如何设置不全部加载所有helper</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-10T10:30:00+09:00" pubdate data-updated="true">Apr 10<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>
+
+
+</div>
+    </div>
+		<h4>关于helper的总结</h4>
+
+<hr />
+
+<ul>
+<li>rails默认为controller加载所有的helper，所以helper 方法无论写在那个文件中，都可以在view层调用。</li>
+<li><p>设置不要默认加载所有的helper
+  Rails >= 3.1 时，通过在配置文件中，添加如下设置:<br/>
+  config.action_controller.include_all_helpers = false</p>
+
+<p>  Rails &lt; 3.1,默认在ApplicationController中有以下行，删除即可<br/>
+  helper :all</p></li>
+<li><p>如果经过以上的配置，那么controller默认就只会加载自己对应的helper，如果controller有继承关系，那么也会加载父类对应的helper</p></li>
+<li>通过在controller中使用以下方法，可以加载制定的helper: <code>helper CommonHelper</code></li>
+</ul>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -261,7 +478,21 @@ date.to_time</p></blockquote></li>
 <p>这里是一个命令 <code>git status</code> ，用来查看当前git仓库的状态。</p>
 
 <ul>
-<li>使用 <code>*</code> 进行无须列表，使用 <code>1.</code> 进行有序列表</li>
+<li><p>使用 <code>*</code> 进行无须列表，使用 <code>1.</code> 进行有序列表</p></li>
+<li><p>写链接</p></li>
+</ul>
+
+
+<p><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></p>
+
+<ul>
+<li><p>写代码片段（每行前面是一个tab，或者四个空格）</p>
+
+<p>  路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+  文件：server.rb
+  方法：GenericServer#start_thread
+  代码：
+  addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)</p></li>
 </ul>
 
 
@@ -877,6 +1108,17 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 <ul>
 <li>查看可用分辨率 <code>xrandr</code></li>
 <li>设置分辨率 <code>xrandr -s 可用分辨率的具体数字</code></li>
+<li>输出要添加到xorg文件中section minitor的内容 <code>gtf 1024 768 70</code>, 参数是分辨率和刷新频率</li>
+<li>生成xorg文件 <code>xorg -configure</code>, 拷贝到 <code>/etc/X11/xorg.conf</code></li>
+</ul>
+
+
+<h3>好的参考资源</h3>
+
+<hr />
+
+<ul>
+<li><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></li>
 </ul>
 
 

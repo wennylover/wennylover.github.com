@@ -3,10 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: rails - 默言，在路上</title>
+	<title>linux下网络设置 - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="Category: rails">
+	<meta name="description" content="Ubuntu系统 网络配置文件路径: /etc/network/interfaces
+路由设置配置文件路径: /etc/resolv.conf 注意有时候经常设置固定ip后上不了网，这个时候可能是因为dns配置没有修改过来。 CentOS系统 网络配置文件路径: /etc/sysconfig/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -71,137 +72,60 @@
 <div id="toload">
 <!-- begin toload --> 
     <div id="content" class="inner">
-        
+        <article class="post">
+	<h2 class="title">Linux下网络设置</h2>
+	<div class="entry-content"><h4>Ubuntu系统</h4>
+
+<hr />
+
+<ul>
+<li>网络配置文件路径: <code>/etc/network/interfaces</code></li>
+<li>路由设置配置文件路径: <code>/etc/resolv.conf</code><br/>
+  注意有时候经常设置固定ip后上不了网，这个时候可能是因为dns配置没有修改过来。</li>
+</ul>
+
+
+<h4>CentOS系统</h4>
+
+<hr />
+
+<ul>
+<li>网络配置文件路径:  <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code></li>
+<li>路由设置配置文件路径: <code>/etc/resolv.conf</code> , 这个文件手动改不管用，会自动改回去，可以在上面的配置中加入DNS的配置，重启网络就可以自动重新配置这个文件。</li>
+</ul>
+
+
+<h4>特别注意</h4>
+
+<hr />
+
+<p>如果要在windows端手动的修改vmnet8的ip地址等，那么修改之后如果还需要让虚拟机访问外网，那么需要针对能够上外网的网卡进行共享配置。
+比如现在是local network有限上网，那么就需要在本地网络的属性中有[共有]那个tab里面要把本地网络共享给vmnet8，这样的话，才可以在
+虚拟机里面上外网。</p>
+</div>
+
+<div class="meta">
 	
-
-
-	
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/2013/05/22/the-ssl-in-rails/">关于Rails中的SSL</a></h2>
-	<div class="meta">
-		<span class="date">May 22</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ssl/'>ssl</a>
-
-
-</span>
-	    
-	</div>
+</div>
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/10/rails-helper-load-and-setting/">rails中helper的加载和相关设置，以及如何设置不全部加载所有helper</a></h2>
-	<div class="meta">
-		<span class="date">Apr 10</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/03/08/the-guide-to-rails-time-zones/">rails应用中timezones的正确用法</a></h2>
-	<div class="meta">
-		<span class="date">Mar  8</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/02/05/ruby-rails-tips/">Ruby,Rails的一些概念和注意点</a></h2>
-	<div class="meta">
-		<span class="date">Feb  5</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</span>
-	    
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">在局域网（LAN）中访问webrick服务器速度过慢</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>
 
-
-</span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
     </div>
     <footer id="footer">
@@ -228,7 +152,10 @@
       var disqus_shortname = 'wennylover';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/04/11/linux-network-setting/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/04/11/linux-network-setting/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

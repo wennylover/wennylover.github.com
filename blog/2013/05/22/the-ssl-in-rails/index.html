@@ -3,10 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: rails - 默言，在路上</title>
+	<title>关于Rails中的SSL - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="Category: rails">
+	<meta name="description" content="关于force SSL请求的配置 只需要在config文件（比如application.rb）中添加如下配置:
+config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下: 在Gemfile中添加如下内容: group : &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -71,137 +72,83 @@
 <div id="toload">
 <!-- begin toload --> 
     <div id="content" class="inner">
-        
+        <article class="post">
+	<h2 class="title">关于Rails中的SSL</h2>
+	<div class="entry-content"><h4>关于force SSL请求的配置</h4>
+
+<hr />
+
+<p>只需要在config文件（比如application.rb）中添加如下配置:<br/>
+<code>config.force_ssl = true</code></p>
+
+<p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
+
+<ul>
+<li><p>在Gemfile中添加如下内容:</p>
+
+<p>  group :development do</p>
+
+<pre><code>gem 'thin'
+</code></pre>
+
+<p>  end</p></li>
+<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+</ul>
+
+
+<h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
+
+<ul>
+<li><p>在配置文件中做如下配置</p>
+
+<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env[&#8216;HTTPS&#8217;] != &#8216;on&#8217; }</p>
+
+<p>  注1：可能需要在头部 require &#8216;rack/ssl&#8217;
+  注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
+
+<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
+</code></pre></li>
+<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
+
+<p>  before_filter :force_ssl</p>
+
+<p>  def force_ssl</p>
+
+<pre><code>if !request.ssl?
+  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
+end
+</code></pre>
+
+<p>  end</p></li>
+<li><p>这个时候测试的话可能需要启动两个服务器<br/>
+  # thin start -p 3000<br/>
+  # thin start -ssl -p 3001</p></li>
+</ul>
+
+</div>
+
+<div class="meta">
 	
-
-
-	
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/2013/05/22/the-ssl-in-rails/">关于Rails中的SSL</a></h2>
-	<div class="meta">
-		<span class="date">May 22</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ssl/'>ssl</a>
-
-
-</span>
-	    
-	</div>
+</div>
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/10/rails-helper-load-and-setting/">rails中helper的加载和相关设置，以及如何设置不全部加载所有helper</a></h2>
-	<div class="meta">
-		<span class="date">Apr 10</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/03/08/the-guide-to-rails-time-zones/">rails应用中timezones的正确用法</a></h2>
-	<div class="meta">
-		<span class="date">Mar  8</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/02/05/ruby-rails-tips/">Ruby,Rails的一些概念和注意点</a></h2>
-	<div class="meta">
-		<span class="date">Feb  5</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</span>
-	    
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/access-slow-of-webrick-in-the-lan/">在局域网（LAN）中访问webrick服务器速度过慢</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>
 
-
-</span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-windows/">WindowsでNetBeansでrailsのDebug環境の構築(失敗した)</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/">LinuxでNetBeansでrailsのDebug環境の構築</a></h2>
-	<div class="meta">
-		<span class="date">Jan 25</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/env-install/'>env install</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
-
-
-</span>
-	    
-	</div>
-</article>
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
     </div>
     <footer id="footer">
@@ -228,7 +175,10 @@
       var disqus_shortname = 'wennylover';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/05/22/the-ssl-in-rails/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/05/22/the-ssl-in-rails/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
