@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-27T18:47:02+09:00</updated>
+  <updated>2013-05-27T19:02:06+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我常使用的rails gem包]]></title>
+    <link href="http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me/"/>
+    <updated>2013-05-27T18:56:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me</id>
+    <content type="html"><![CDATA[<h4>前言</h4>
+
+<p>这里主要是记述自己经常使用的一些gems，或者是偶尔看到的一些gems。</p>
+
+<!-- more -->
+
+
+<h4>Gems</h4>
+
+<p>一个问卷调查的gem，可以通过DSL建立问卷<br/>
+https://github.com/NUBIC/surveyor</p>
+
+<p>认证的gem<br/>
+https://github.com/plataformatec/devise</p>
+
+<p>权限控制的gem<br/>
+https://github.com/ryanb/cancan</p>
+
+<p>表单gem，view层的东西<br/>
+https://github.com/justinfrench/formtastic</p>
+
+<p>一个后台任务执行引擎<br/>
+http://backgroundrb.rubyforge.org/
+https://github.com/gnufied/backgroundrb</p>
+
+<p>以下这个是对backgroundrb在rails3下面的支持<br/>
+https://github.com/mtylty/backgroundrb-rails3</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Rails中的SSL]]></title>
@@ -254,60 +289,6 @@ date.to_time</p></blockquote></li>
 <li>.ru后缀的文件就是rackup文件。比如rails应用中的config.ru,可以通过 <code>rackup config.ru</code> 来执行rackup文件。</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在局域网（LAN）中访问webrick服务器速度过慢]]></title>
-    <link href="http://wennylover.github.com/blog/2013/01/25/access-slow-of-webrick-in-the-lan/"/>
-    <updated>2013-01-25T16:09:00+09:00</updated>
-    <id>http://wennylover.github.com/blog/2013/01/25/access-slow-of-webrick-in-the-lan</id>
-    <content type="html"><![CDATA[<h3>问题现象描述</h3>
-
-<hr />
-
-<p>在Linux虚拟机中进行rails开发和server构建，通过外边的windows访问应用时，
-速度很慢。</p>
-
-<h3>对策一</h3>
-
-<hr />
-
-<p>参考帖子:  <a href="http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html">http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html</a></p>
-
-<p>帖子内容总结（修改了两个文件）</p>
-
-<p>修改文件1</p>
-
-<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
-文件：server.rb
-方法：GenericServer#start_thread
-代码：
-addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
-</code></pre>
-
-<p>修改文件2</p>
-
-<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
-文件：httprequest.rb
-方法：HTTPRequest#parse
-代码：
-@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr : []
-改为
-@peeraddr = socket.respond_to?(:peeraddr) ? socket.peeraddr(:numeric ) : []
-</code></pre>
-
-<h3>对策二</h3>
-
-<hr />
-
-<p>修改内容如下</p>
-
-<pre><code>修改文件：#{RUBY_HOME}/lib/ruby/1.9.1/webrick/config.rb 
-:DoNotReverseLookup =&gt; nil
-改为
-:DoNotReverseLookup =&gt; true
-</code></pre>
 ]]></content>
   </entry>
   

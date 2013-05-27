@@ -4,7 +4,7 @@
   <title><![CDATA[Category: moyan manual | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/moyan-manual/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-27T18:47:02+09:00</updated>
+  <updated>2013-05-27T19:02:06+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我常使用的rails gem包]]></title>
+    <link href="http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me/"/>
+    <updated>2013-05-27T18:56:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me</id>
+    <content type="html"><![CDATA[<h4>前言</h4>
+
+<p>这里主要是记述自己经常使用的一些gems，或者是偶尔看到的一些gems。</p>
+
+<!-- more -->
+
+
+<h4>Gems</h4>
+
+<p>一个问卷调查的gem，可以通过DSL建立问卷<br/>
+https://github.com/NUBIC/surveyor</p>
+
+<p>认证的gem<br/>
+https://github.com/plataformatec/devise</p>
+
+<p>权限控制的gem<br/>
+https://github.com/ryanb/cancan</p>
+
+<p>表单gem，view层的东西<br/>
+https://github.com/justinfrench/formtastic</p>
+
+<p>一个后台任务执行引擎<br/>
+http://backgroundrb.rubyforge.org/
+https://github.com/gnufied/backgroundrb</p>
+
+<p>以下这个是对backgroundrb在rails3下面的支持<br/>
+https://github.com/mtylty/backgroundrb-rails3</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我的octopress博客写法总结]]></title>
@@ -141,62 +176,6 @@ addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
   linux下的SVN client，类似windows下的TortoiseSVN。</li>
 <li>nautinus<br/>
   Linux下的资源管理器（resource manager）。</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[linux常用命令]]></title>
-    <link href="http://wennylover.github.com/blog/2012/12/31/linuxchang-yong-ming-ling/"/>
-    <updated>2012-12-31T23:47:00+09:00</updated>
-    <id>http://wennylover.github.com/blog/2012/12/31/linuxchang-yong-ming-ling</id>
-    <content type="html"><![CDATA[<h3>桌面命令类</h3>
-
-<hr />
-
-<ul>
-<li>切换到不同tty的命令 <code>chvt 1-7</code></li>
-</ul>
-
-
-<h3>实用命令类</h3>
-
-<hr />
-
-<ul>
-<li>查看当前系统发行版的信息 <code>lsb_release</code></li>
-<li>查看系统硬件信息目录 <code>/proc</code></li>
-<li>文本处理三剑客 <code>grep</code> <code>sed</code> <code>awk</code>
-
-<ol>
-<li>grep:主要是查找字符串</li>
-<li>sed:主要是以行为单位处理字符串</li>
-<li>awk:主要是针对一行字符串，利用间隔符，对每一段进行处理</li>
-</ol>
-</li>
-<li>列出所有打开的文件，可以进行各种网络调试等。 <code>lsof</code></li>
-</ul>
-
-
-<h3>设置类</h3>
-
-<hr />
-
-<ul>
-<li>查看可用分辨率 <code>xrandr</code></li>
-<li>设置分辨率 <code>xrandr -s 可用分辨率的具体数字</code></li>
-<li>输出要添加到xorg文件中section minitor的内容 <code>gtf 1024 768 70</code>, 参数是分辨率和刷新频率</li>
-<li>生成xorg文件 <code>xorg -configure</code>, 拷贝到 <code>/etc/X11/xorg.conf</code></li>
-</ul>
-
-
-<h3>好的参考资源</h3>
-
-<hr />
-
-<ul>
-<li><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></li>
 </ul>
 
 ]]></content>

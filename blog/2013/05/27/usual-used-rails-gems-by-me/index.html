@@ -3,11 +3,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>如何在ubuntu server中安装GUI界面 - 默言，在路上</title>
+	<title>我常使用的rails gem包 - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="关于ubuntu server 其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
-比如ubuntu server默认会安装很多服务，比如mysql，apache等等，而desktop版本会默认安装一些常用的办公软件等。 &hellip;">
+	<meta name="description" content="前言 这里主要是记述自己经常使用的一些gems，或者是偶尔看到的一些gems。 Gems 一个问卷调查的gem，可以通过DSL建立问卷
+https://github.com/NUBIC/surveyor 认证的gem
+https://github.com/plataformatec/devise &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,19 +78,34 @@
 		<div id="content">
 			<div style="float:left; width:100%;">
 <article class="post">
-	<h2 class="title">如何在ubuntu server中安装GUI界面</h2>
-	<div class="entry-content"><h3>关于ubuntu server</h3>
+	<h2 class="title">我常使用的rails Gem包</h2>
+	<div class="entry-content"><h4>前言</h4>
 
-<p>其实个人认为ubuntu server和ubuntu desktop版本没有什么本质的区别，只是默认安装的软件/组件不同而已。
-比如ubuntu server默认会安装很多服务，比如mysql，apache等等，而desktop版本会默认安装一些常用的办公软件等。
-ubuntu server默认不安装桌面环境，如果需要的话可以按照以下步骤进行安装。</p>
+<p>这里主要是记述自己经常使用的一些gems，或者是偶尔看到的一些gems。</p>
 
-<h3>安装GUI步骤</h3>
+<!-- more -->
 
-<pre><code>1. apt-get install xinit
-2. apt-get install gdm
-3. apt-get install ubuntu-desktop
-</code></pre>
+
+<h4>Gems</h4>
+
+<p>一个问卷调查的gem，可以通过DSL建立问卷<br/>
+https://github.com/NUBIC/surveyor</p>
+
+<p>认证的gem<br/>
+https://github.com/plataformatec/devise</p>
+
+<p>权限控制的gem<br/>
+https://github.com/ryanb/cancan</p>
+
+<p>表单gem，view层的东西<br/>
+https://github.com/justinfrench/formtastic</p>
+
+<p>一个后台任务执行引擎<br/>
+http://backgroundrb.rubyforge.org/
+https://github.com/gnufied/backgroundrb</p>
+
+<p>以下这个是对backgroundrb在rails3下面的支持<br/>
+https://github.com/mtylty/backgroundrb-rails3</p>
 </div>
 
 <div class="meta">
@@ -193,8 +209,8 @@ ubuntu server默认不安装桌面环境，如果需要的话可以按照以下�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wennylover.github.com/blog/2012/12/30/ru-he-zai-ubuntu-serverzhong-an-zhuang-guijie-mian/';
-        var disqus_url = 'http://wennylover.github.com/blog/2012/12/30/ru-he-zai-ubuntu-serverzhong-an-zhuang-guijie-mian/';
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/05/27/usual-used-rails-gems-by-me/';
         var disqus_script = 'embed.js';
       
     (function () {
