@@ -13,6 +13,8 @@ categories: [rails, env install]
 注意事项，主要是碰到一些错误。并且在windows这次没有成功。  
 特别注意: _**这里不是手顺**_。
 
+<!-- more -->
+
 ### 正文内容
 ----
 

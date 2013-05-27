@@ -13,9 +13,10 @@ categories: [rails]
 
 ### 对策一
 ----
-参考帖子:  http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html  
+参考帖子:  [http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html](http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html)
 
 帖子内容总结（修改了两个文件）  
+
 修改文件1
 
 	路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick

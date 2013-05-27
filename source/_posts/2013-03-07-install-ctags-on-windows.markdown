@@ -13,6 +13,6 @@ categories: [vim]
 
 #### 安装过程
 ----
-1. 下载安装包: http://ctags.sourceforge.net/
+1. 下载安装包: [http://ctags.sourceforge.net/](http://ctags.sourceforge.net/)
 2. 将下载的zip包解压到 `vim/vim73/` 目录下
 3. 将 `ctags/` 目录添加到环境变量path中
