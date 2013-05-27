@@ -6,6 +6,8 @@ rake preview
 
 rake new_post['my post title']
 
+rake install["theme name"]
+	安装主题命令，其实主要就是把theme目录中的sass和source目录，覆盖根目录下面的这两个目录
 
 
 === 说明事项
