@@ -4,7 +4,7 @@
   <title><![CDATA[Category: env install | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/env-install/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-22T11:20:19+09:00</updated>
+  <updated>2013-05-27T18:47:02+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -25,6 +25,9 @@
 <p>这里只是单纯的记录了自己在windows中为NetBeans构筑Debug环境过程中的一些
 注意事项，主要是碰到一些错误。并且在windows这次没有成功。<br/>
 特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+
+<!-- more -->
+
 
 <h3>正文内容</h3>
 
@@ -68,6 +71,9 @@ http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-whil
 <p>这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
 注意事项，主要是碰到一些错误。<br/>
 特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+
+<!-- more -->
+
 
 <h3>正文内容</h3>
 

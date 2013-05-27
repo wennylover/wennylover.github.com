@@ -7,7 +7,10 @@
     <meta name="author" content="默言">
     
 	<meta name="description" content="关于force SSL请求的配置 只需要在config文件（比如application.rb）中添加如下配置:
-config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下: 在Gemfile中添加如下内容: group : &hellip;">
+config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下: 在Gemfile中添加如下内容: 1
+2
+3
+group : &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -26,14 +29,17 @@ config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin�
 
     <!-- remove or comment it to disable ajaxification -->   
     <script src="/javascripts/ajaxify.js"></script>
+    <script src="/javascripts/ender.js"></script>
+	<script src="/javascripts/octopress.js" type="text/javascript"></script>
    
     
 </head>
 
 
-<body>
-    <div id="wrapper">
-    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<body   >
+
+<div id="wrapper">
+    <header id="header"><!-- for more effects see _animate.scss -->
 <!--
 <h1 class="animated bounceInDown">
     <div id="headerbg">
@@ -69,10 +75,11 @@ config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin�
 
 </header>
 
-<div id="toload">
-<!-- begin toload --> 
-    <div id="content" class="inner">
-        <article class="post">
+	<div id="toload">
+	<!-- begin toload --> 
+		<div id="content">
+			<div style="float:left; width:100%;">
+<article class="post">
 	<h2 class="title">关于Rails中的SSL</h2>
 	<div class="entry-content"><h4>关于force SSL请求的配置</h4>
 
@@ -84,46 +91,81 @@ config.force_ssl = true 关于如何启动支持SSL的server，可以使用thin�
 <p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
 
 <ul>
-<li><p>在Gemfile中添加如下内容:</p>
+<li>在Gemfile中添加如下内容:</li>
+</ul>
 
-<p>  group :development do</p>
 
-<pre><code>gem 'thin'
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>  end</p></li>
-<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+
+<!-- more -->
+
+
+<ul>
+<li>启动ssl服务器的命令: <code>thin start --ssl</code></li>
 </ul>
 
 
 <h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
 
 <ul>
-<li><p>在配置文件中做如下配置</p>
-
-<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env[&#8216;HTTPS&#8217;] != &#8216;on&#8217; }</p>
-
-<p>  注1：可能需要在头部 require &#8216;rack/ssl&#8217;
-  注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
-
-<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
-</code></pre></li>
-<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
-
-<p>  before_filter :force_ssl</p>
-
-<p>  def force_ssl</p>
-
-<pre><code>if !request.ssl?
-  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
-end
-</code></pre>
-
-<p>  end</p></li>
-<li><p>这个时候测试的话可能需要启动两个服务器<br/>
-  # thin start -p 3000<br/>
-  # thin start -ssl -p 3001</p></li>
+<li>在配置文件中做如下配置</li>
 </ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">insert_before</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Static</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">SSL</span><span class="p">,</span> <span class="ss">:exclude</span> <span class="o">=&gt;</span> <span class="nb">proc</span> <span class="p">{</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;HTTPS&#39;</span><span class="o">]</span> <span class="o">!=</span> <span class="s1">&#39;on&#39;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="err">注</span><span class="mi">1</span><span class="err">：可能需要在头部</span> <span class="nb">require</span> <span class="s1">&#39;rack/ssl&#39;</span>
+</span><span class='line'>  <span class="err">注</span><span class="mi">2</span><span class="err">：</span><span class="n">exclude</span><span class="err">就是针对那些请求不会包装成</span><span class="n">https</span><span class="err">的请求。比如上面的配置意思就是说，</span>
+</span><span class='line'>    <span class="err">如果客户请求的是</span><span class="n">http</span><span class="err">（比如在地址栏输入的是</span><span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">localhost</span><span class="err">），那么就去请求</span><span class="n">http</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before_filter</span> <span class="ss">:force_ssl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">force_ssl</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">!</span><span class="n">request</span><span class="o">.</span><span class="n">ssl?</span>
+</span><span class='line'>  <span class="n">redirect_to</span> <span class="ss">:protocol</span> <span class="o">=&gt;</span> <span class="s1">&#39;https&#39;</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">3001</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>这个时候测试的话可能需要启动两个服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3000</span>
+</span><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="n">ssl</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3001</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 </div>
 
@@ -150,7 +192,59 @@ end
 </div>
 </section>
 
-    </div>
+</div>
+
+
+			<aside class="sidebar">
+			  
+				<section>
+  <h1>Category Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/env-install' style='font-size: 117.14285714285714%'>env install(2)</a> <a href='/blog/categories/linux' style='font-size: 134.28571428571428%'>linux(4)</a> <a href='/blog/categories/moyan-manual' style='font-size: 142.85714285714286%'>moyan manual(5)</a> <a href='/blog/categories/rails' style='font-size: 160.0%'>rails(7)</a> <a href='/blog/categories/ruby' style='font-size: 108.57142857142857%'>ruby(1)</a> <a href='/blog/categories/ssl' style='font-size: 108.57142857142857%'>ssl(1)</a> <a href='/blog/categories/ubuntu' style='font-size: 108.57142857142857%'>ubuntu(1)</a> <a href='/blog/categories/vim' style='font-size: 117.14285714285714%'>vim(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/env-install'>env install (2)</a></li><li><a href='/blog/categories/linux'>linux (4)</a></li><li><a href='/blog/categories/moyan-manual'>moyan manual (5)</a></li><li><a href='/blog/categories/rails'>rails (7)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/ssl'>ssl (1)</a></li><li><a href='/blog/categories/ubuntu'>ubuntu (1)</a></li><li><a href='/blog/categories/vim'>vim (2)</a></li></ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/22/the-ssl-in-rails/">关于Rails中的SSL</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/11/linux-network-setting/">linux下网络设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/rails-helper-load-and-setting/">rails中helper的加载和相关设置，以及如何设置不全部加载所有helper</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/08/the-guide-to-rails-time-zones/">rails应用中timezones的正确用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/07/my-octopress-post-syntax/">我的octopress博客写法总结</a>
+      </li>
+    
+  </ul>
+</section>
+
+			  
+			</aside>
+
+			<div style="float:none;clear:both;">
+			</div>
+		</div>
+
+		<div style="float:none;clear:both;">
+		</div>
+
+	<!-- end toload --> 
+	</div>
+
     <footer id="footer">
     <div style="display:inline">
     Copyright &copy; 2013
@@ -193,8 +287,6 @@ end
 
 
 
-<!-- end toload --> 
-</div>
 </div>
 <script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
 <script type="text/javascript">

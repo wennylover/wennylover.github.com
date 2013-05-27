@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ssl | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/ssl/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-22T11:20:19+09:00</updated>
+  <updated>2013-05-27T18:47:02+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -28,45 +28,71 @@
 <p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
 
 <ul>
-<li><p>在Gemfile中添加如下内容:</p>
+<li>在Gemfile中添加如下内容:</li>
+</ul>
 
-<p>  group :development do</p>
 
-<pre><code>gem 'thin'
+<p>```ruby</p>
+
+<pre><code>group :development do
+  gem 'thin'
+end
 </code></pre>
 
-<p>  end</p></li>
-<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+<p>```</p>
+
+<!-- more -->
+
+
+<ul>
+<li>启动ssl服务器的命令: <code>thin start --ssl</code></li>
 </ul>
 
 
 <h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
 
 <ul>
-<li><p>在配置文件中做如下配置</p>
+<li>在配置文件中做如下配置</li>
+</ul>
 
-<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }</p>
+
+<p>```ruby</p>
+
+<pre><code>config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude =&gt; proc { |env| env['HTTPS'] != 'on' }
+</code></pre>
 
 <p>  注1：可能需要在头部 require 'rack/ssl'
   注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
 
-<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
-</code></pre></li>
-<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
+<pre><code>    如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
+</code></pre>
 
-<p>  before_filter :force_ssl</p>
+<p>```</p>
 
-<p>  def force_ssl</p>
+<ul>
+<li>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</li>
+</ul>
 
-<pre><code>if !request.ssl?
-  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
+
+<p>```ruby</p>
+
+<pre><code>before_filter :force_ssl
+
+def force_ssl
+  if !request.ssl?
+    redirect_to :protocol =&gt; 'https', :port =&gt; 3001
+  end
 end
 </code></pre>
 
-<p>  end</p></li>
-<li><p>这个时候测试的话可能需要启动两个服务器<br/>
-  # thin start -p 3000<br/>
-  # thin start -ssl -p 3001</p></li>
+<p>```</p>
+
+<ul>
+<li>这个时候测试的话可能需要启动两个服务器<br/>
+<code>
+  thin start -p 3000  
+  thin start -ssl -p 3001  
+</code></li>
 </ul>
 
 ]]></content>

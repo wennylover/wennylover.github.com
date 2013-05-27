@@ -26,14 +26,17 @@ gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下
 
     <!-- remove or comment it to disable ajaxification -->   
     <script src="/javascripts/ajaxify.js"></script>
+    <script src="/javascripts/ender.js"></script>
+	<script src="/javascripts/octopress.js" type="text/javascript"></script>
    
     
 </head>
 
 
-<body>
-    <div id="wrapper">
-    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<body   >
+
+<div id="wrapper">
+    <header id="header"><!-- for more effects see _animate.scss -->
 <!--
 <h1 class="animated bounceInDown">
     <div id="headerbg">
@@ -69,10 +72,11 @@ gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下
 
 </header>
 
-<div id="toload">
-<!-- begin toload --> 
-    <div id="content" class="inner">
-        <article class="post">
+	<div id="toload">
+	<!-- begin toload --> 
+		<div id="content">
+			<div style="float:left; width:100%;">
+<article class="post">
 	<h2 class="title">Ruby,Rails的一些概念和注意点</h2>
 	<div class="entry-content"><h4>Ruby,Rails的一些概念</h4>
 
@@ -121,7 +125,59 @@ gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下
 </div>
 </section>
 
-    </div>
+</div>
+
+
+			<aside class="sidebar">
+			  
+				<section>
+  <h1>Category Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/env-install' style='font-size: 117.14285714285714%'>env install(2)</a> <a href='/blog/categories/linux' style='font-size: 134.28571428571428%'>linux(4)</a> <a href='/blog/categories/moyan-manual' style='font-size: 142.85714285714286%'>moyan manual(5)</a> <a href='/blog/categories/rails' style='font-size: 160.0%'>rails(7)</a> <a href='/blog/categories/ruby' style='font-size: 108.57142857142857%'>ruby(1)</a> <a href='/blog/categories/ssl' style='font-size: 108.57142857142857%'>ssl(1)</a> <a href='/blog/categories/ubuntu' style='font-size: 108.57142857142857%'>ubuntu(1)</a> <a href='/blog/categories/vim' style='font-size: 117.14285714285714%'>vim(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/env-install'>env install (2)</a></li><li><a href='/blog/categories/linux'>linux (4)</a></li><li><a href='/blog/categories/moyan-manual'>moyan manual (5)</a></li><li><a href='/blog/categories/rails'>rails (7)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/ssl'>ssl (1)</a></li><li><a href='/blog/categories/ubuntu'>ubuntu (1)</a></li><li><a href='/blog/categories/vim'>vim (2)</a></li></ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/22/the-ssl-in-rails/">关于Rails中的SSL</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/11/linux-network-setting/">linux下网络设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/rails-helper-load-and-setting/">rails中helper的加载和相关设置，以及如何设置不全部加载所有helper</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/08/the-guide-to-rails-time-zones/">rails应用中timezones的正确用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/07/my-octopress-post-syntax/">我的octopress博客写法总结</a>
+      </li>
+    
+  </ul>
+</section>
+
+			  
+			</aside>
+
+			<div style="float:none;clear:both;">
+			</div>
+		</div>
+
+		<div style="float:none;clear:both;">
+		</div>
+
+	<!-- end toload --> 
+	</div>
+
     <footer id="footer">
     <div style="display:inline">
     Copyright &copy; 2013
@@ -164,8 +220,6 @@ gem(rubygem): 一个ruby程序，用来管理gem包的安装等，类似linux下
 
 
 
-<!-- end toload --> 
-</div>
 </div>
 <script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
 <script type="text/javascript">

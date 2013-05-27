@@ -117,11 +117,11 @@ function renderDeliciousLinks(items) {
 }
 
 $.domReady(function() {
-  testFeatures();
-  wrapFlashVideos();
-  flashVideoFallback();
-  addCodeLineNumbers();
-  getNav();
+//  testFeatures();
+//  wrapFlashVideos();
+//  flashVideoFallback();
+//  addCodeLineNumbers();
+//  getNav();
   addSidebarToggler();
 });
 

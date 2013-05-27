@@ -4,7 +4,7 @@
   <title><![CDATA[默言，在路上]]></title>
   <link href="http://wennylover.github.com/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-22T11:20:19+09:00</updated>
+  <updated>2013-05-27T18:47:02+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -28,46 +28,81 @@
 <p>关于如何启动支持SSL的server，可以使用thin服务器。具体做法如下:</p>
 
 <ul>
-<li><p>在Gemfile中添加如下内容:</p>
+<li>在Gemfile中添加如下内容:</li>
+</ul>
 
-<p>  group :development do</p>
 
-<pre><code>gem 'thin'
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>  end</p></li>
-<li><p>启动ssl服务器的命令: <code>thin start --ssl</code></p></li>
+
+<!-- more -->
+
+
+<ul>
+<li>启动ssl服务器的命令: <code>thin start --ssl</code></li>
 </ul>
 
 
 <h4>如果部分请求force ssl, 部分请求还是http的情况</h4>
 
 <ul>
-<li><p>在配置文件中做如下配置</p>
-
-<p>  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env[&#8216;HTTPS&#8217;] != &#8216;on&#8217; }</p>
-
-<p>  注1：可能需要在头部 require &#8216;rack/ssl&#8217;
-  注2：exclude就是针对那些请求不会包装成https的请求。比如上面的配置意思就是说，</p>
-
-<pre><code>  如果客户请求的是http（比如在地址栏输入的是http://localhost），那么就去请求http
-</code></pre></li>
-<li><p>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</p>
-
-<p>  before_filter :force_ssl</p>
-
-<p>  def force_ssl</p>
-
-<pre><code>if !request.ssl?
-  redirect_to :protocol =&gt; 'https', :port =&gt; 3001
-end
-</code></pre>
-
-<p>  end</p></li>
-<li><p>这个时候测试的话可能需要启动两个服务器<br/>
-  # thin start -p 3000<br/>
-  # thin start -ssl -p 3001</p></li>
+<li>在配置文件中做如下配置</li>
 </ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">insert_before</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Static</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">SSL</span><span class="p">,</span> <span class="ss">:exclude</span> <span class="o">=&gt;</span> <span class="nb">proc</span> <span class="p">{</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;HTTPS&#39;</span><span class="o">]</span> <span class="o">!=</span> <span class="s1">&#39;on&#39;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="err">注</span><span class="mi">1</span><span class="err">：可能需要在头部</span> <span class="nb">require</span> <span class="s1">&#39;rack/ssl&#39;</span>
+</span><span class='line'>  <span class="err">注</span><span class="mi">2</span><span class="err">：</span><span class="n">exclude</span><span class="err">就是针对那些请求不会包装成</span><span class="n">https</span><span class="err">的请求。比如上面的配置意思就是说，</span>
+</span><span class='line'>    <span class="err">如果客户请求的是</span><span class="n">http</span><span class="err">（比如在地址栏输入的是</span><span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">localhost</span><span class="err">），那么就去请求</span><span class="n">http</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在需要强制https的controller中添加 <code>before_filter</code>, 例如：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before_filter</span> <span class="ss">:force_ssl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">force_ssl</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">!</span><span class="n">request</span><span class="o">.</span><span class="n">ssl?</span>
+</span><span class='line'>  <span class="n">redirect_to</span> <span class="ss">:protocol</span> <span class="o">=&gt;</span> <span class="s1">&#39;https&#39;</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">3001</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>这个时候测试的话可能需要启动两个服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3000</span>
+</span><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="n">ssl</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3001</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
@@ -119,13 +154,25 @@ end
 
 <ul>
 <li>rails默认为controller加载所有的helper，所以helper 方法无论写在那个文件中，都可以在view层调用。</li>
-<li><p>设置不要默认加载所有的helper
-  Rails >= 3.1 时，通过在配置文件中，添加如下设置:<br/>
-  config.action_controller.include_all_helpers = false</p>
+<li>设置不要默认加载所有的helper</li>
+</ul>
 
-<p>  Rails &lt; 3.1,默认在ApplicationController中有以下行，删除即可<br/>
-  helper :all</p></li>
-<li><p>如果经过以上的配置，那么controller默认就只会加载自己对应的helper，如果controller有继承关系，那么也会加载父类对应的helper</p></li>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Rails &gt;= 3.1 时，通过在配置文件中，添加如下设置:  </span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_controller</span><span class="o">.</span><span class="n">include_all_helpers</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Rails &lt; 3.1,默认在ApplicationController中有以下行，删除即可  </span>
+</span><span class='line'><span class="n">helper</span> <span class="ss">:all</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>如果经过以上的配置，那么controller默认就只会加载自己对应的helper，如果controller有继承关系，那么也会加载父类对应的helper</li>
 <li>通过在controller中使用以下方法，可以加载制定的helper: <code>helper CommonHelper</code></li>
 </ul>
 
@@ -267,14 +314,30 @@ date.to_time</p></blockquote></li>
 <p><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></p>
 
 <ul>
-<li><p>写代码片段（每行前面是一个tab，或者四个空格）</p>
-
-<p>  路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
-  文件：server.rb
-  方法：GenericServer#start_thread
-  代码：
-  addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)</p></li>
+<li>写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。<br/>
+  &lt;！&#8211; more &#8211;></li>
 </ul>
+
+
+<h4>写代码片段</h4>
+
+<p>方法1<br/>
+（每行前面是一个tab，或者四个空格，特别注意，如果代码code片段前面是一个序列的时候，比如ul，ol，那么这种方法无效）</p>
+
+<pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
+文件：server.rb
+方法：GenericServer#start_thread
+代码：
+addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
+</code></pre>
+
+<p>方法2</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s1">&#39;hello world&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
@@ -327,7 +390,7 @@ date.to_time</p></blockquote></li>
 <hr />
 
 <ol>
-<li>下载安装包: http://ctags.sourceforge.net/</li>
+<li>下载安装包: <a href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a></li>
 <li>将下载的zip包解压到 <code>vim/vim73/</code> 目录下</li>
 <li>将 <code>ctags/</code> 目录添加到环境变量path中</li>
 </ol>
@@ -423,10 +486,11 @@ date.to_time</p></blockquote></li>
 
 <hr />
 
-<p>参考帖子:  http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html</p>
+<p>参考帖子:  <a href="http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html">http://www.flatws.cn/article/program/ruby/2011-05-01/23456.html</a></p>
 
-<p>帖子内容总结（修改了两个文件）<br/>
-修改文件1</p>
+<p>帖子内容总结（修改了两个文件）</p>
+
+<p>修改文件1</p>
 
 <pre><code>路径：/usr/local/rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick
 文件：server.rb
@@ -473,6 +537,9 @@ addr = sock.peeraddr 改为 addr = sock.peeraddr(:numeric)
 注意事项，主要是碰到一些错误。并且在windows这次没有成功。<br/>
 特别注意: <em><strong>这里不是手顺</strong></em>。</p>
 
+<!-- more -->
+
+
 <h3>正文内容</h3>
 
 <hr />
@@ -515,6 +582,9 @@ http://stackoverflow.com/questions/9174328/fatal-error-while-bundle-install-whil
 <p>这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
 注意事项，主要是碰到一些错误。<br/>
 特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+
+<!-- more -->
+
 
 <h3>正文内容</h3>
 
