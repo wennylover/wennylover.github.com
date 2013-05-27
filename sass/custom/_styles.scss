@@ -1,2 +1,110 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+// 主要用的背景色
+$m_main_bk: #f2f2f2;
+// 主要用的背景色,深色系，比如右边的标签栏
+$m_main_bk_deep: #e5e5e5;
+
+body {
+	background-color: $m_main_bk;
+}
+
+#header {
+	padding: 10px 0 5px 0;
+}
+#wrapper {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+#toload {
+	background-color: $m_main_bk_deep;
+	float:left;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #bfbfbf;
+}
+
+#content .blog-index article {
+	padding-top: 0em;
+}
+
+// 文章的标题
+article h2.title {
+	font-size: 1.8em;
+	margin-bottom: 15px;
+}
+
+#content {
+	background-color: $m_main_bk;
+	margin-right: 300px;
+	position: relative;
+	border-right: 1px solid #dadde3;
+	padding-right: 20px;
+
+}
+#content>div, #content>article, #content>nav {
+	width: 100%;
+	float: left;
+}
+
+.collapse-sidebar #content {
+	margin-right: 20px;
+}
+
+aside.sidebar {
+	width: 240px;
+	padding: 0 20px 20px 50px;
+	background: none;
+	clear: none;
+	float: left;
+	margin: 0 -100% 0 0;
+}
+
+.collapse-sidebar aside.sidebar {
+	padding-left: 55px;
+	padding-right: 55px;
+	float: none;
+	width: auto;
+	clear: left;
+	margin: 0;
+	padding: 0 35px 1px;
+	background-color: #f3f5f8;
+	border-top: 1px solid #e6e8ec;
+}
+
+#pagenavi {
+	border-bottom: none;
+}
+#pagenavi>div {
+	text-align: center;
+	font-size: .95em;
+	position: relative;
+}
+
+#footer {
+	clear: both;
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+div.entry-content {
+	h3, h4 {
+		clear: both;
+		background-color: rgb(62, 151, 64);
+		color: white;
+		padding-left: 10px;
+	}
+
+	p, pre, div, ul {
+		padding-right: 20px;
+		padding-left: 10px;
+	}
+}
+// discus评论
+#content section.archives,
+#comment {
+	width: 100%;
+	float: left;
+}

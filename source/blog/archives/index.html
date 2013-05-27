@@ -3,6 +3,8 @@ layout: default
 title: Blog Archives
 ---
 
+<div style="float:left; width:100%;">
 {% for post in site.posts reverse %}
 	{% include archive_post.html %}
 {% endfor %}
+</div>
