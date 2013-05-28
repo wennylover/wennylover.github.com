@@ -116,6 +116,15 @@ function renderDeliciousLinks(items) {
   $('#delicious').html(output);
 }
 
+
+// 20130528 dairg added start
+// 这个函数是如果开启了ajax加载功能的话，那么在ajax加载完内容后，的处理，比如对sidebar的控制等
+function actionsAfterAjaxLoadContent() {
+  addSidebarToggler();
+}
+
+// 20130528 dairg added end
+
 //$.domReady(function() {
 $(function() {
 //  testFeatures();

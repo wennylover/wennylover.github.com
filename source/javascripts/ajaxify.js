@@ -5,8 +5,11 @@ $(document).ready(function() {
 		var href = $(this).attr('href');
 		if(hash==href.substr(0,href.length-5)){
 			var toLoad = hash+'.html #toload';
-			$('#toload').load(toLoad)
-		}											
+			$('#toload').load(toLoad, function(){
+				actionsAfterAjaxLoadContent();
+			})
+		}
+  
 	});
 
 	$('#nav li#ajax a').click(function(){
@@ -18,7 +21,10 @@ $(document).ready(function() {
 		$('#load').fadeIn('fast');
 		window.location.hash = $(this).attr('href').substr(0,$(this).attr('href').length-5);
 		function loadContent() {
-			$('#toload').load(toLoad,showNewContent())
+			$('#toload').load(toLoad,function(){
+				actionsAfterAjaxLoadContent();
+				showNewContent();
+			})
 		}
 		function showNewContent() {
 			$('#toload').delay(500).fadeTo('normal',1,hideLoader());
