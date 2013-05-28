@@ -116,7 +116,8 @@ function renderDeliciousLinks(items) {
   $('#delicious').html(output);
 }
 
-$.domReady(function() {
+//$.domReady(function() {
+$(function() {
 //  testFeatures();
 //  wrapFlashVideos();
 //  flashVideoFallback();
