@@ -33,4 +33,11 @@ categories: [moyan manual, rails]
 以下这个是对backgroundrb在rails3下面的支持  
 [backgroundrb-rails3(github)](https://github.com/mtylty/backgroundrb-rails3)
 
+#### Rails Projects
+
+Teambox:协作平台
+[Teambox(github)](https://github.com/teambox/teambox)
+
+rails的博客系统RefineryCMS
+[RefineryCMS(github)](https://github.com/resolve/refinerycms)
 
