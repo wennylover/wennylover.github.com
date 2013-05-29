@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-28T17:44:28+09:00</updated>
+  <updated>2013-05-29T18:55:48+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -28,23 +28,31 @@
 <h4>Gems</h4>
 
 <p>一个问卷调查的gem，可以通过DSL建立问卷<br/>
-https://github.com/NUBIC/surveyor</p>
+<a href="https://github.com/NUBIC/surveyor">surveyor(github)</a></p>
 
 <p>认证的gem<br/>
-https://github.com/plataformatec/devise</p>
+<a href="https://github.com/plataformatec/devise">devise(github)</a></p>
 
 <p>权限控制的gem<br/>
-https://github.com/ryanb/cancan</p>
+<a href="https://github.com/ryanb/cancan">cancan(github)</a></p>
 
 <p>表单gem，view层的东西<br/>
-https://github.com/justinfrench/formtastic</p>
+<a href="https://github.com/justinfrench/formtastic">formtastic(github)</a></p>
 
 <p>一个后台任务执行引擎<br/>
-http://backgroundrb.rubyforge.org/
-https://github.com/gnufied/backgroundrb</p>
+<a href="http://backgroundrb.rubyforge.org/">backgroundrb(rubyforge)</a><br/>
+<a href="https://github.com/gnufied/backgroundrb">backgroundrb(github)</a></p>
 
 <p>以下这个是对backgroundrb在rails3下面的支持<br/>
-https://github.com/mtylty/backgroundrb-rails3</p>
+<a href="https://github.com/mtylty/backgroundrb-rails3">backgroundrb-rails3(github)</a></p>
+
+<h4>Rails Projects</h4>
+
+<p>Teambox:协作平台
+<a href="https://github.com/teambox/teambox">Teambox(github)</a></p>
+
+<p>rails的博客系统RefineryCMS
+<a href="https://github.com/resolve/refinerycms">RefineryCMS(github)</a></p>
 ]]></content>
   </entry>
   
