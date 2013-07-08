@@ -12,3 +12,4 @@ rails
 ruby
 env install:安装各种环境的文章
 vim
+weekly topic:每周专题（每周尽量抽出3到4个小时，做一个感兴趣的专题调查。文件命名weekly_topic_20130708）
