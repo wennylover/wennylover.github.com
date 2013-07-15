@@ -33,6 +33,9 @@ categories: [moyan manual, rails]
 以下这个是对backgroundrb在rails3下面的支持  
 [backgroundrb-rails3(github)](https://github.com/mtylty/backgroundrb-rails3)
 
+SSL控制的gem
+[bartt-ssl\_requirement](http://rubygems.org/gems/bartt-ssl_requirement)
+
 #### Rails Projects
 
 Teambox:协作平台

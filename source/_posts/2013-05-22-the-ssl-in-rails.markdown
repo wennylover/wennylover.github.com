@@ -51,7 +51,7 @@ categories: [rails, ssl]
 * 这个时候测试的话可能需要启动两个服务器  
 ```
 	thin start -p 3000  
-	thin start -ssl -p 3001  
+	thin start --ssl -p 3001  
 ```
 
 
