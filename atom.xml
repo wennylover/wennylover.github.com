@@ -4,7 +4,7 @@
   <title><![CDATA[默言，在路上]]></title>
   <link href="http://wennylover.github.com/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-29T18:55:48+09:00</updated>
+  <updated>2013-11-11T16:48:30+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,238 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[如何在vim中进行ruby，rails的debug(针对ruby>=1.9 && use debugger-xml gem)]]></title>
+    <link href="http://wennylover.github.com/blog/2013/11/11/how-to-install-debug-env-of-rails-on-vim/"/>
+    <updated>2013-11-11T15:48:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/11/11/how-to-install-debug-env-of-rails-on-vim</id>
+    <content type="html"><![CDATA[<h4>概要说明</h4>
+
+<hr />
+
+<p>关于具体的构筑手顺，参照vim-ruby-debugger中的Readme内容即可。
+这里主要是写一些自己在构筑构成中碰到一些问题和注意事项。</p>
+
+<!-- more -->
+
+
+<h4>环境</h4>
+
+<hr />
+
+<p>CentOS 6.2<br/>
+ruby 1.9.3p125 (2012-02-16 revision 34643)</p>
+
+<h4>参考文章</h4>
+
+<hr />
+
+<ul>
+<li><a href="http://nobyu.hatenadiary.jp/entry/20111204/1322982165">Railsアプリをvimでステップ実行する方法</a></li>
+<li><a href="https://github.com/astashov/vim-ruby-debugger">vim-ruby-debugger plugin source in github</a></li>
+<li><a href="https://github.com/astashov/debugger-xml">debugger-xml plugin source in github</a></li>
+</ul>
+
+
+<h4>事前准备</h4>
+
+<hr />
+
+<p>确认CentOS中是否有以下package。<br/>
+* libXt<br/>
+* libXt-devel<br/>
+* glib<br/>
+* gtk2<br/>
+* gtk2-devel</p>
+
+<p>特别注意：<br/>
+1. 关于glib，gtk2，gtk2-devel，在vim源代码目录的src/INSTALL文件中有说明，如果要打开clientserver开关的话，需要安装这些package。<br/>
+2. 一定要确认X11环境是否已经具备，特别是libXt-devel package。我构筑的时候就是没有这个环境，然后花费了很多时间。</p>
+
+<h4>vim从源代码安装</h4>
+
+<hr />
+
+<ul>
+<li>下载vim的源代码。 <a href="http://www.vim.org/">vim官网</a></li>
+<li>进入vim 源代码目录，依次执行下面的命令。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure --with-features=huge --enable-multibyte --enable-pythoninterp --enable-rubyinterp --enable-cscope --enable-gui=gtk2 --prefix=$HOME/mytool --enable-gtk2-check --with-x
+</span><span class='line'>make
+</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>由于我以前有vim的版本，并且vimfiles已经存在，所以为了让新安装的vim7.4也使用以前的vimfiles，做成了以下链接。<br/>
+<code>ln -s /usr/share/vim/vimfiles ~/.vim</code></p></li>
+<li><p>由于我把新版本安装到 <code>$HOME/mytool</code> 中，所以为了是默认的vim命令就是最新版本，在 <code>~/.bashrc</code> 中添加了如下内容。<br/>
+<code>export path=$HOME/mytool/bin:$PATH</code></p></li>
+</ul>
+
+
+<p>特别注意：<br/>
+1. 如果没有指定&#8211;prefix，那么会默认安装vim命令到/usr/bin,如果以前已经有vim版本，那么就会覆盖掉。所以如果想保留以前版本的话，最好使用&#8211;prefix参数，或者备份以前的vim命令。<br/>
+2. 在执行完 <code>./configure</code> 后要确认一下屏幕输出的结果，主要是一些check是否都是yes，比如，以上提到的事前准备中的package不存在的话，那么会有一些头文件找不到的错误。<br/>
+3. make完成后，<code>src/auto/config.log</code> 中的信息也很有用，出错的时候可以查看这个文件中是否有一些error。</p>
+
+<h4>关于debugger-xml的版本问题</h4>
+
+<hr />
+
+<p>正常来讲，vim的clientserver，ruby，signs机能打开后，装入vim-ruby-debugger插件，并且本地安装了debugger-xml gem应该就是可以debug了。<br/>
+但是，我使用了 <code>debugger-xml 0.3.2</code> 却总是无法启动 Rdebugger。大概调查了一下，可能是以下文件中，<code>ENV['IDE_PROCESS_DISPATCHER']</code>　无法取得的原因。</p>
+
+<p><a href="https://github.com/astashov/debugger-xml/blob/master/lib/debugger/xml/multiprocess/pre_child.rb">source link</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">debugger</span><span class="o">-</span><span class="n">xml</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">debugger</span><span class="o">/</span><span class="n">xml</span><span class="o">/</span><span class="n">multiprocess</span><span class="o">/</span><span class="n">pre_child</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">acceptor_host</span><span class="p">,</span> <span class="n">acceptor_port</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;IDE_PROCESS_DISPATCHER&#39;</span><span class="o">].</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">acceptor_host</span><span class="p">,</span> <span class="n">acceptor_port</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">acceptor_host</span> <span class="k">unless</span> <span class="n">acceptor_port</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后来把debugger-xml的版本切换回 <code>0.2.0</code> 以后就可以正常 Rdebugger 了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[(专题)如何在vim中进行ruby，rails的debug调试]]></title>
+    <link href="http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708/"/>
+    <updated>2013-07-08T20:54:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708</id>
+    <content type="html"><![CDATA[<h4>前言</h4>
+
+<p>本次主题是如何在vim中进行rails程序的debug调试。</p>
+
+<!-- more -->
+
+
+<h4>Vim准备</h4>
+
+<ul>
+<li><p>使用插件:<a href="https://github.com/astashov/vim-ruby-debugger">vim-ruby-debugger</a></p>
+
+<p>  该插件需要vim7以上版本，并且编译时开启了clientserver，signs功能。</p></li>
+<li><p>如何确认？</p>
+
+<p>  在vim中运行version命令，查看结果中是否开启这两个功能。</p></li>
+<li><p>如何在编译时开启client-server功能。</p>
+
+<p>  由于client-server需要使用GUI的一些组件，所以必须开启GUI。而开启GUI，在Linux中需要依赖一些X11的东西。我的做法是:</p></li>
+</ul>
+
+
+<p>在Centos中，先安装以下package。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum -yv install libXt libXt-devel \
+</span><span class='line'>libXpm libXpm-devel \
+</span><span class='line'>libX11 libX11-common.noarch libX11-devel \
+</span><span class='line'>ghc-cairo-devel  cairo   \
+</span><span class='line'>libgnomeui-devel \
+</span><span class='line'>ncurses ncurses-devel  ncurses-libs ncurses-static \
+</span><span class='line'>ghc-gtk-devel gtk+-devel \
+</span><span class='line'>gtk2  gtk2-devel \
+</span><span class='line'>atk-devel atk \
+</span><span class='line'>libbonoboui libbonoboui-devel </span></code></pre></td></tr></table></div></figure>
+
+
+<p>从vim源代码重新编译，按照如下参数</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure \
+</span><span class='line'>--with-features=huge \
+</span><span class='line'>--enable-multibyte \
+</span><span class='line'>--enable-pythoninterp \
+</span><span class='line'>--enable-perlinterp \
+</span><span class='line'>--enable-gpm \
+</span><span class='line'>--enable-cscope \
+</span><span class='line'>--enable-fontset \
+</span><span class='line'>--disable-darwin \
+</span><span class='line'>--enable-gui=auto \
+</span><span class='line'>--disable-netbeans \
+</span><span class='line'>--enable-gtk-check=no \
+</span><span class='line'>--enable-gtk2-check=no \
+</span><span class='line'>--enable-gnome-check=no \
+</span><span class='line'>--enable-motif-check=no \
+</span><span class='line'>--enable-athena-check=no \
+</span><span class='line'>--enable-nextaw-check=no \
+</span><span class='line'>--enable-carbon-check=no</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是ubuntu的情况下，可以参照如下连接（本人未测试）:<br/>
+<a href="http://vim.wikia.com/wiki/Building_Vim">http://vim.wikia.com/wiki/Building_Vim</a></p>
+
+<p>主要是安装以下package:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+</span><span class='line'>  libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+</span><span class='line'>  libcairo2-dev libx11-dev libxpm-dev libxt-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启动vim:  <code>vim --servername VIM</code></p>
+
+<p>查看ruby-debug的帮助:<code>help ruby-debug</code></p>
+
+<h4>Rails Debug</h4>
+
+<ul>
+<li>在Gemfile中添加如下:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ruby 1.8.7的时候</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;ruby-debug-ide&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在Vim中启动debug: <code>:Rdebugger</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我常使用的rails gem包]]></title>
@@ -45,6 +277,9 @@
 
 <p>以下这个是对backgroundrb在rails3下面的支持<br/>
 <a href="https://github.com/mtylty/backgroundrb-rails3">backgroundrb-rails3(github)</a></p>
+
+<p>SSL控制的gem
+<a href="http://rubygems.org/gems/bartt-ssl_requirement">bartt-ssl_requirement</a></p>
 
 <h4>Rails Projects</h4>
 
@@ -142,7 +377,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3000</span>
-</span><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">-</span><span class="n">ssl</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3001</span>
+</span><span class='line'><span class="n">thin</span> <span class="n">start</span> <span class="o">--</span><span class="n">ssl</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3001</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -357,7 +592,7 @@ date.to_time</p></blockquote></li>
 <p><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></p>
 
 <ul>
-<li>写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。<br/>
+<li>写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。(注意以下的感叹号是全角)<br/>
   &lt;！&#8211; more &#8211;></li>
 </ul>
 
@@ -695,6 +930,7 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
 </ol>
 </li>
 <li>列出所有打开的文件，可以进行各种网络调试等。 <code>lsof</code></li>
+<li>强制kill: <code>kill -9 1234</code></li>
 </ul>
 
 

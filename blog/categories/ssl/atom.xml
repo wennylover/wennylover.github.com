@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ssl | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/ssl/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-29T18:55:48+09:00</updated>
+  <updated>2013-11-11T16:48:30+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -91,7 +91,7 @@ end
 <li>这个时候测试的话可能需要启动两个服务器<br/>
 <code>
   thin start -p 3000  
-  thin start -ssl -p 3001  
+  thin start --ssl -p 3001  
 </code></li>
 </ul>
 

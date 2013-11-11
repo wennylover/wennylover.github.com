@@ -4,7 +4,7 @@
   <title><![CDATA[Category: moyan manual | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/moyan-manual/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-05-29T18:55:48+09:00</updated>
+  <updated>2013-11-11T16:48:30+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -45,6 +45,9 @@
 
 <p>以下这个是对backgroundrb在rails3下面的支持<br/>
 <a href="https://github.com/mtylty/backgroundrb-rails3">backgroundrb-rails3(github)</a></p>
+
+<p>SSL控制的gem
+<a href="http://rubygems.org/gems/bartt-ssl_requirement">bartt-ssl_requirement</a></p>
 
 <h4>Rails Projects</h4>
 
@@ -88,7 +91,7 @@
 <p><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/">一篇很好的讲到linux软连接和硬链接的文章</a></p>
 
 <ul>
-<li>写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。<br/>
+<li>写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。(注意以下的感叹号是全角)<br/>
   &lt;！-- more --></li>
 </ul>
 

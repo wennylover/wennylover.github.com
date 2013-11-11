@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: weekly topic | 默言，在路上]]></title>
+  <link href="http://wennylover.github.com/blog/categories/weekly-topic/atom.xml" rel="self"/>
+  <link href="http://wennylover.github.com/"/>
+  <updated>2013-11-11T16:48:30+09:00</updated>
+  <id>http://wennylover.github.com/</id>
+  <author>
+    <name><![CDATA[默言]]></name>
+    <email><![CDATA[rugang6891@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[(专题)如何在vim中进行ruby，rails的debug调试]]></title>
+    <link href="http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708/"/>
+    <updated>2013-07-08T20:54:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708</id>
+    <content type="html"><![CDATA[<h4>前言</h4>
+
+<p>本次主题是如何在vim中进行rails程序的debug调试。</p>
+
+<!-- more -->
+
+
+<h4>Vim准备</h4>
+
+<ul>
+<li><p>使用插件:<a href="https://github.com/astashov/vim-ruby-debugger">vim-ruby-debugger</a></p>
+
+<p>  该插件需要vim7以上版本，并且编译时开启了clientserver，signs功能。</p></li>
+<li><p>如何确认？</p>
+
+<p>  在vim中运行version命令，查看结果中是否开启这两个功能。</p></li>
+<li><p>如何在编译时开启client-server功能。</p>
+
+<p>  由于client-server需要使用GUI的一些组件，所以必须开启GUI。而开启GUI，在Linux中需要依赖一些X11的东西。我的做法是:</p></li>
+</ul>
+
+
+<p>在Centos中，先安装以下package。
+<code>
+yum -yv install libXt libXt-devel \
+libXpm libXpm-devel \
+libX11 libX11-common.noarch libX11-devel \
+ghc-cairo-devel  cairo   \
+libgnomeui-devel \
+ncurses ncurses-devel  ncurses-libs ncurses-static \
+ghc-gtk-devel gtk+-devel \
+gtk2  gtk2-devel \
+atk-devel atk \
+libbonoboui libbonoboui-devel
+</code></p>
+
+<p>从vim源代码重新编译，按照如下参数
+<code>
+./configure \
+--with-features=huge \
+--enable-multibyte \
+--enable-pythoninterp \
+--enable-perlinterp \
+--enable-gpm \
+--enable-cscope \
+--enable-fontset \
+--disable-darwin \
+--enable-gui=auto \
+--disable-netbeans \
+--enable-gtk-check=no \
+--enable-gtk2-check=no \
+--enable-gnome-check=no \
+--enable-motif-check=no \
+--enable-athena-check=no \
+--enable-nextaw-check=no \
+--enable-carbon-check=no
+</code></p>
+
+<p>如果是ubuntu的情况下，可以参照如下连接（本人未测试）:<br/>
+<a href="http://vim.wikia.com/wiki/Building_Vim">http://vim.wikia.com/wiki/Building_Vim</a></p>
+
+<p>主要是安装以下package:
+<code>
+sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+  libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+  libcairo2-dev libx11-dev libxpm-dev libxt-dev
+</code></p>
+
+<p>启动vim:  <code>vim --servername VIM</code></p>
+
+<p>查看ruby-debug的帮助:<code>help ruby-debug</code></p>
+
+<h4>Rails Debug</h4>
+
+<ul>
+<li><p>在Gemfile中添加如下:
+```ruby</p>
+
+<h1>ruby 1.8.7的时候</h1>
+
+<p>gem "ruby-debug-ide"
+```</p></li>
+<li><p>在Vim中启动debug: <code>:Rdebugger</code></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

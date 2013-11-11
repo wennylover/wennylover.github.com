@@ -3,12 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>LinuxでNetBeansでrailsのDebug環境の構築 - 默言，在路上</title>
+	<title>(专题)如何在vim中进行ruby，rails的debug调试 - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="前言 这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。
-特别注意: 这里不是手顺。 正文内容 ■一番最新のruby-debug-base19 (0.11.26)のインストールが必要です。 ruby-debug-base19 ( &hellip;">
+	<meta name="description" content="前言 本次主题是如何在vim中进行rails程序的debug调试。 Vim准备 使用插件:vim-ruby-debugger 该插件需要vim7以上版本，并且编译时开启了clientserver，signs功能。
+如何确认？ 在vim中运行version命令，查看结果中是否开启这两个功能。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -82,51 +81,128 @@
 		<div id="content">
 			<div style="float:left; width:100%;">
 <article class="post">
-	<h2 class="title">LinuxでNetBeansでrailsのDebug環境の構築</h2>
-	<div class="entry-content"><h3>前言</h3>
+	<h2 class="title">(专题)如何在vim中进行ruby，rails的debug调试</h2>
+	<div class="entry-content"><h4>前言</h4>
 
-<hr />
-
-<p>这里只是单纯的记录了自己在ubuntu中为NetBeans构筑Debug环境过程中的一些
-注意事项，主要是碰到一些错误。<br/>
-特别注意: <em><strong>这里不是手顺</strong></em>。</p>
+<p>本次主题是如何在vim中进行rails程序的debug调试。</p>
 
 <!-- more -->
 
 
-<h3>正文内容</h3>
+<h4>Vim准备</h4>
 
-<hr />
+<ul>
+<li><p>使用插件:<a href="https://github.com/astashov/vim-ruby-debugger">vim-ruby-debugger</a></p>
 
-<p>■一番最新のruby-debug-base19 (0.11.26)のインストールが必要です。</p>
+<p>  该插件需要vim7以上版本，并且编译时开启了clientserver，signs功能。</p></li>
+<li><p>如何确认？</p>
 
-<pre><code>ruby-debug-base19 (0.11.26)
-ruby-debug-ide19 (0.4.12)
-ruby-debug19 (0.11.6)
+<p>  在vim中运行version命令，查看结果中是否开启这两个功能。</p></li>
+<li><p>如何在编译时开启client-server功能。</p>
 
-gem install ruby-debug19 -- --with-ruby-include=C:\ruby\Ruby193\include\ruby-1.9.1\ruby-1.9.3-p286
-curl -OL http://rubyforge.org/frs/download.php/75415/ruby-debug-base19-0.11.26.gem
-curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
+<p>  由于client-server需要使用GUI的一些组件，所以必须开启GUI。而开启GUI，在Linux中需要依赖一些X11的东西。我的做法是:</p></li>
+</ul>
 
-====ご参照===
-https://gist.github.com/1457544
-http://ruby-china.org/topics/843
-</code></pre>
 
-<p>■environment.rbに下記のメソッドの追加が必要です。</p>
+<p>在Centos中，先安装以下package。</p>
 
-<pre><code># add by dairg 20121101
-class String
-  def is_binary_data?
-    ( self.count( "^ -~", "^\r\n" ).fdiv(self.size) &gt; 0.3 || self.index( "\x00" ) ) unless empty?
-  end
-end
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum -yv install libXt libXt-devel \
+</span><span class='line'>libXpm libXpm-devel \
+</span><span class='line'>libX11 libX11-common.noarch libX11-devel \
+</span><span class='line'>ghc-cairo-devel  cairo   \
+</span><span class='line'>libgnomeui-devel \
+</span><span class='line'>ncurses ncurses-devel  ncurses-libs ncurses-static \
+</span><span class='line'>ghc-gtk-devel gtk+-devel \
+</span><span class='line'>gtk2  gtk2-devel \
+</span><span class='line'>atk-devel atk \
+</span><span class='line'>libbonoboui libbonoboui-devel </span></code></pre></td></tr></table></div></figure>
 
-=====ご参照=====
-http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-debugthread-loop-undefined-method-is-bin/9043481#9043481
-</code></pre>
 
-<p>■linecache19 (0.5.13)</p>
+<p>从vim源代码重新编译，按照如下参数</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure \
+</span><span class='line'>--with-features=huge \
+</span><span class='line'>--enable-multibyte \
+</span><span class='line'>--enable-pythoninterp \
+</span><span class='line'>--enable-perlinterp \
+</span><span class='line'>--enable-gpm \
+</span><span class='line'>--enable-cscope \
+</span><span class='line'>--enable-fontset \
+</span><span class='line'>--disable-darwin \
+</span><span class='line'>--enable-gui=auto \
+</span><span class='line'>--disable-netbeans \
+</span><span class='line'>--enable-gtk-check=no \
+</span><span class='line'>--enable-gtk2-check=no \
+</span><span class='line'>--enable-gnome-check=no \
+</span><span class='line'>--enable-motif-check=no \
+</span><span class='line'>--enable-athena-check=no \
+</span><span class='line'>--enable-nextaw-check=no \
+</span><span class='line'>--enable-carbon-check=no</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是ubuntu的情况下，可以参照如下连接（本人未测试）:<br/>
+<a href="http://vim.wikia.com/wiki/Building_Vim">http://vim.wikia.com/wiki/Building_Vim</a></p>
+
+<p>主要是安装以下package:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+</span><span class='line'>  libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+</span><span class='line'>  libcairo2-dev libx11-dev libxpm-dev libxt-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启动vim:  <code>vim --servername VIM</code></p>
+
+<p>查看ruby-debug的帮助:<code>help ruby-debug</code></p>
+
+<h4>Rails Debug</h4>
+
+<ul>
+<li>在Gemfile中添加如下:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ruby 1.8.7的时候</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;ruby-debug-ide&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在Vim中启动debug: <code>:Rdebugger</code></li>
+</ul>
+
 </div>
 
 <div class="meta">
@@ -230,8 +306,8 @@ http://stackoverflow.com/questions/8961367/aptana-3-ruby-debugger-exception-in-d
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/';
-        var disqus_url = 'http://wennylover.github.com/blog/2013/01/25/the-install-of-rails-debug-env-of-netbeans-on-linux/';
+        var disqus_identifier = 'http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708/';
+        var disqus_url = 'http://wennylover.github.com/blog/2013/07/08/weekly-topic-20130708/';
         var disqus_script = 'embed.js';
       
     (function () {
