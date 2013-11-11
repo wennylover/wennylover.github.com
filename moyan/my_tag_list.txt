@@ -3,6 +3,7 @@ Here is My Tag List
 默认写categories时的模板(中间是空格分开)
 
 categories: [moyan manual]
+categories: [rails, vim]
 
 =======================================
 linux

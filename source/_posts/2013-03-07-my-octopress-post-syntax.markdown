@@ -23,7 +23,7 @@ categories: [moyan manual]
 
 [一篇很好的讲到linux软连接和硬链接的文章](http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/)
 
-* 写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。  
+* 写more, 这样的话就会在主页上显示到这个以上为止，其他的内容省略。(注意以下的感叹号是全角)  
 	<！-- more -->
 
 #### 写代码片段
