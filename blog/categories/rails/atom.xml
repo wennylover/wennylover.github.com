@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 默言，在路上]]></title>
   <link href="http://wennylover.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-11-11T16:48:30+09:00</updated>
+  <updated>2013-11-12T13:40:54+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我在调查jpmobile过程中的总结]]></title>
+    <link href="http://wennylover.github.com/blog/2013/11/12/the-summary-of-jpmobile/"/>
+    <updated>2013-11-12T13:27:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/11/12/the-summary-of-jpmobile</id>
+    <content type="html"><![CDATA[<h4>概述</h4>
+
+<hr />
+
+<p>JPMobile(<a href="https://github.com/jpmobile/jpmobile">Github</a>)，是一个rails的gem包，主要是用来简化针对日本不同的手机客户端view层的设计。<br/>
+Ripple是一个chrome的plugin，可以模拟很多手机的浏览器。</p>
+
+<!-- more -->
+
+
+<h4>关于ruby的一些小知识</h4>
+
+<hr />
+
+<ul>
+<li>Module.autoload is a instance_method</li>
+<li>Kernel.autoload is not a instance_method</li>
+<li>module_function : 定义模块方法</li>
+<li>:: 引用顶级命名空间，例子 ::File</li>
+<li><code>/^(?:abcde)/</code> 其中<code>?:</code>的意思是:只匹配exp,不捕获匹配的文本，也不给此分组分配组号。</li>
+</ul>
+
+
+<h4>有用的链接</h4>
+
+<hr />
+
+<ul>
+<li><a href="http://www.openspc2.org/userAgent/">userAgent（ユーザーエージェント一覧）</a></li>
+<li><a href="https://github.com/blackberry/Ripple-UI/issues/614">关于ripple不会发送mobile本身的user agent的过渡方案</a><br/>
+上文中提到的可能要用到的路径：<code>C:\Users\dairg\AppData\Local\Google\Chrome\User Data\Default\Extensions\cnijnnaimeaacneklcndcafbnkeicckh\0.9.13_0\controllers</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何在vim中进行ruby，rails的debug(针对ruby>=1.9 && use debugger-xml gem)]]></title>
@@ -261,109 +302,6 @@ end
 ```</p></li>
 <li><p>如果经过以上的配置，那么controller默认就只会加载自己对应的helper，如果controller有继承关系，那么也会加载父类对应的helper</p></li>
 <li>通过在controller中使用以下方法，可以加载制定的helper: <code>helper CommonHelper</code></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rails应用中timezones的正确用法]]></title>
-    <link href="http://wennylover.github.com/blog/2013/03/08/the-guide-to-rails-time-zones/"/>
-    <updated>2013-03-08T11:08:00+09:00</updated>
-    <id>http://wennylover.github.com/blog/2013/03/08/the-guide-to-rails-time-zones</id>
-    <content type="html"><![CDATA[<h3>说明</h3>
-
-<hr />
-
-<p>本文参照翻译了以下博文:</p>
-
-<p><a href="http://danilenko.org/2012/7/6/rails_timezones/">The Exhaustive Guide to Rails Time Zones</a><br/>
-作者: Alexander</p>
-
-<h3>正文</h3>
-
-<hr />
-
-<ul>
-<li>得到当前时间
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.now</p>
-
-<p><code>可接受做法</code><br/>
-Time.now.in_time_zone<br/>
-DateTime.now.in_time_zone</p>
-
-<p><code>错误做法</code><br/>
-Time.now<br/>
-DateTime.now</p></blockquote></li>
-<li>得到日期（比如今天，昨天等）
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.today<br/>
-Time.zone.today - 1.day</p>
-
-<p><code>可接受做法</code><br/>
-Date.current<br/>
-Date.yesterday</p>
-
-<p><code>错误做法</code><br/>
-Date.today</p></blockquote></li>
-<li>生成Time（Build Time）
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.local(2013, 3, 8, 10, 00)</p>
-
-<p><code>错误做法</code><br/>
-Time.new(2013, 3, 8, 10, 00)<br/>
-DateTime.new(2013, 3, 8, 10, 00)</p></blockquote></li>
-<li>从时间戳生成Time（Time from Timestamp）
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.at(Timestamp)</p>
-
-<p><code>可接受做法</code><br/>
-Time.at(Timestamp).in_time_zone</p>
-
-<p><code>错误做法</code><br/>
-Time.at(Timestamp)</p></blockquote></li>
-<li>解析时间（简单）
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.parse(str)</p>
-
-<p><code>错误做法</code><br/>
-Time.parse(str)</p></blockquote></li>
-<li>解析时间（按照严格格式）
-
-<blockquote><p><code>正确做法</code><br/>
-Time.zone.strptime(str, "%Y-%m-%d %H:%M %Z")<br/>
-注意：这种比较好的做法，需要引入作者自己写的gem。<a href="https://github.com/doz/time_zone_ext">TimeZoneExt</a></p>
-
-<p><code>可接受做法</code><br/>
-DateTime.strptime(str, "%Y-%m-%d %H:%M %Z").in_time_zone</p>
-
-<p><code>错误做法</code><br/>
-DateTime.strptime(str, "%Y-%m-%d %H:%M %Z")</p></blockquote></li>
-<li>日期转时间（Get Time From Date）
-
-<blockquote><p><code>正确做法</code><br/>
-date.beginning_of_day</p>
-
-<p><code>可接受做法</code><br/>
-date.to_time_in_current_zone</p>
-
-<p><code>错误做法</code><br/>
-date.to_time</p></blockquote></li>
-</ul>
-
-
-<h3>注意事项</h3>
-
-<hr />
-
-<ul>
-<li>ruby的标准库中，比如Time和DateTime类是没有考虑时区（TimeZone）的概念在里面的。</li>
 </ul>
 
 ]]></content>

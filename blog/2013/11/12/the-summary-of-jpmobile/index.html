@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>linux下网络设置 - 默言，在路上</title>
+	<title>我在调查jpmobile过程中的总结 - 默言，在路上</title>
     <meta name="author" content="默言">
     
-	<meta name="description" content="Ubuntu系统 网络配置文件路径: /etc/network/interfaces
-路由设置配置文件路径: /etc/resolv.conf 注意有时候经常设置固定ip后上不了网，这个时候可能是因为dns配置没有修改过来。 CentOS系统 网络配置文件路径: /etc/sysconfig/ &hellip;">
+	<meta name="description" content="概述 JPMobile(Github)，是一个rails的gem包，主要是用来简化针对日本不同的手机客户端view层的设计。
+Ripple是一个chrome的plugin，可以模拟很多手机的浏览器。 关于ruby的一些小知识 Module.autoload is a instance_method &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -81,35 +81,40 @@
 		<div id="content">
 			<div style="float:left; width:100%;">
 <article class="post">
-	<h2 class="title">Linux下网络设置</h2>
-	<div class="entry-content"><h4>Ubuntu系统</h4>
+	<h2 class="title">我在调查jpmobile过程中的总结</h2>
+	<div class="entry-content"><h4>概述</h4>
+
+<hr />
+
+<p>JPMobile(<a href="https://github.com/jpmobile/jpmobile">Github</a>)，是一个rails的gem包，主要是用来简化针对日本不同的手机客户端view层的设计。<br/>
+Ripple是一个chrome的plugin，可以模拟很多手机的浏览器。</p>
+
+<!-- more -->
+
+
+<h4>关于ruby的一些小知识</h4>
 
 <hr />
 
 <ul>
-<li>网络配置文件路径: <code>/etc/network/interfaces</code></li>
-<li>路由设置配置文件路径: <code>/etc/resolv.conf</code><br/>
-  注意有时候经常设置固定ip后上不了网，这个时候可能是因为dns配置没有修改过来。</li>
+<li>Module.autoload is a instance_method</li>
+<li>Kernel.autoload is not a instance_method</li>
+<li>module_function : 定义模块方法</li>
+<li>:: 引用顶级命名空间，例子 ::File</li>
+<li><code>/^(?:abcde)/</code> 其中<code>?:</code>的意思是:只匹配exp,不捕获匹配的文本，也不给此分组分配组号。</li>
 </ul>
 
 
-<h4>CentOS系统</h4>
+<h4>有用的链接</h4>
 
 <hr />
 
 <ul>
-<li>网络配置文件路径:  <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code></li>
-<li>路由设置配置文件路径: <code>/etc/resolv.conf</code> , 这个文件手动改不管用，会自动改回去，可以在上面的配置中加入DNS的配置，重启网络就可以自动重新配置这个文件。</li>
+<li><a href="http://www.openspc2.org/userAgent/">userAgent（ユーザーエージェント一覧）</a></li>
+<li><a href="https://github.com/blackberry/Ripple-UI/issues/614">关于ripple不会发送mobile本身的user agent的过渡方案</a><br/>
+上文中提到的可能要用到的路径：<code>C:\Users\dairg\AppData\Local\Google\Chrome\User Data\Default\Extensions\cnijnnaimeaacneklcndcafbnkeicckh\0.9.13_0\controllers</code></li>
 </ul>
 
-
-<h4>特别注意</h4>
-
-<hr />
-
-<p>如果要在windows端手动的修改vmnet8的ip地址等，那么修改之后如果还需要让虚拟机访问外网，那么需要针对能够上外网的网卡进行共享配置。
-比如现在是local network有限上网，那么就需要在本地网络的属性中有[共有]那个tab里面要把本地网络共享给vmnet8，这样的话，才可以在
-虚拟机里面上外网。</p>
 </div>
 
 <div class="meta">
@@ -128,12 +133,6 @@
 </div>
 
 
-
-<section id="comment">
-    <h2 class="title">Comments</h2>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
 
 </div>
 
@@ -207,22 +206,6 @@
 })(jQuery);
 </script> <!-- Delete or comment this line to disable Fancybox -->
 
-
-<script type="text/javascript">
-      var disqus_shortname = 'wennylover';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://wennylover.github.com/blog/2013/04/11/linux-network-setting/';
-        var disqus_url = 'http://wennylover.github.com/blog/2013/04/11/linux-network-setting/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

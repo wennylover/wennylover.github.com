@@ -4,7 +4,7 @@
   <title><![CDATA[默言，在路上]]></title>
   <link href="http://wennylover.github.com/atom.xml" rel="self"/>
   <link href="http://wennylover.github.com/"/>
-  <updated>2013-11-11T16:48:30+09:00</updated>
+  <updated>2013-11-12T13:40:54+09:00</updated>
   <id>http://wennylover.github.com/</id>
   <author>
     <name><![CDATA[默言]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我在调查jpmobile过程中的总结]]></title>
+    <link href="http://wennylover.github.com/blog/2013/11/12/the-summary-of-jpmobile/"/>
+    <updated>2013-11-12T13:27:00+09:00</updated>
+    <id>http://wennylover.github.com/blog/2013/11/12/the-summary-of-jpmobile</id>
+    <content type="html"><![CDATA[<h4>概述</h4>
+
+<hr />
+
+<p>JPMobile(<a href="https://github.com/jpmobile/jpmobile">Github</a>)，是一个rails的gem包，主要是用来简化针对日本不同的手机客户端view层的设计。<br/>
+Ripple是一个chrome的plugin，可以模拟很多手机的浏览器。</p>
+
+<!-- more -->
+
+
+<h4>关于ruby的一些小知识</h4>
+
+<hr />
+
+<ul>
+<li>Module.autoload is a instance_method</li>
+<li>Kernel.autoload is not a instance_method</li>
+<li>module_function : 定义模块方法</li>
+<li>:: 引用顶级命名空间，例子 ::File</li>
+<li><code>/^(?:abcde)/</code> 其中<code>?:</code>的意思是:只匹配exp,不捕获匹配的文本，也不给此分组分配组号。</li>
+</ul>
+
+
+<h4>有用的链接</h4>
+
+<hr />
+
+<ul>
+<li><a href="http://www.openspc2.org/userAgent/">userAgent（ユーザーエージェント一覧）</a></li>
+<li><a href="https://github.com/blackberry/Ripple-UI/issues/614">关于ripple不会发送mobile本身的user agent的过渡方案</a><br/>
+上文中提到的可能要用到的路径：<code>C:\Users\dairg\AppData\Local\Google\Chrome\User Data\Default\Extensions\cnijnnaimeaacneklcndcafbnkeicckh\0.9.13_0\controllers</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何在vim中进行ruby，rails的debug(针对ruby>=1.9 && use debugger-xml gem)]]></title>
